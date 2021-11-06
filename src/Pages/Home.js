@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components/macro';
 
 const Home = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <S.Container>Hello World</S.Container>;
+};
 
-export default Home
+const S = {};
+S.Container = styled.section``;
+
+export default Home;
