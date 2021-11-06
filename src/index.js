@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import GlobalStyle from './styles/globalStyle';
 import Routes from './Routes';
 import rootReducer, { rootSaga } from './Modules';
+import 'antd/dist/antd.css';
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer =

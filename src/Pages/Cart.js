@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const Home = () => {
-  return <h1>Home</h1>;
+const Cart = () => {
+  return <h1>Cart List</h1>;
 };
 
-export default Home;
+export default Cart;
