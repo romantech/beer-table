@@ -7,7 +7,45 @@ import PatchedPagination from '../Components/PatchedPagination';
 
 const BeerList = () => {
   const beerList = useSelector(state => state.beerListReducer);
-  console.log(beerList);
+  const columns = [
+    {
+      title: 'NAME',
+      field: 'name',
+    },
+    {
+      title: 'TAGLINE',
+      field: 'tagline',
+    },
+    {
+      title: 'ABV',
+      field: 'abv',
+    },
+    {
+      title: 'IBU',
+      field: 'ibu',
+    },
+    {
+      title: 'SRM',
+      field: 'srm',
+    },
+    {
+      title: 'EBC',
+      field: 'ebc',
+    },
+    {
+      title: 'PH',
+      field: 'ph',
+    },
+  ];
+
+  const filteredData = beerList.data?.map(beer => {
+    return columns.reduce((acc, cur) => {
+      if (cur.field in beer) {
+        acc[cur.field] = beer[cur.field];
+      }
+      return acc;
+    }, {});
+  });
 
   return (
     <div style={{ maxWidth: '100%' }}>
@@ -15,26 +53,13 @@ const BeerList = () => {
         components={{
           Pagination: PatchedPagination,
         }}
-        columns={[
-          { title: 'Adı', field: 'name' },
-          { title: 'Soyadı', field: 'surname' },
-          { title: 'Doğum Yılı', field: 'birthYear', type: 'numeric' },
-          {
-            title: 'Doğum Yeri',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-          },
-        ]}
-        data={[
-          {
-            name: 'Mehmet',
-            surname: 'Baran',
-            birthYear: 1987,
-            birthCity: 63,
-          },
-        ]}
-        title="Demo Title"
+        columns={columns}
+        data={filteredData}
+        title="BEER LIST"
         icons={tableIcons}
+        onColumnDragged={(sourceIndex, destinationIndex) =>
+          console.log(sourceIndex, destinationIndex)
+        }
       />
     </div>
   );
