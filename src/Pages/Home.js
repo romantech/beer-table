@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import bearIcon from '../Assets/beerIcon.png';
+import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
 const Home = ({ history }) => {
   const beerList = useSelector(state => state.beerListReducer);
@@ -22,30 +23,8 @@ const Home = ({ history }) => {
 
 const S = {};
 
-S.LineStyle = css`
-  :after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: '';
-    display: block;
-    height: 8px;
-    left: 50%;
-    position: absolute;
-    background: ${({ theme }) => theme.$hover};
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-  }
-  :hover:after {
-    width: 100%;
-    left: 0;
-  }
-`;
-
 S.Container = styled.section`
-  background: ${({ theme }) => theme.$background};
-  height: calc(100vh - 64px);
-  display: grid;
-  place-content: center;
+  ${ContainerStyle}
 
   button {
     background: none;
@@ -75,7 +54,7 @@ S.Container = styled.section`
   h2 {
     margin-top: -5vh;
     font-size: 5vh;
-    ${S.LineStyle}
+    ${UnderlineStyle}
 
     :hover {
       color: ${({ theme }) => theme.$hover};

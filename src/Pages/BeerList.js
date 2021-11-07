@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
+import { ContainerStyle } from '../Styles/commonStyles';
 
 const BeerList = () => {
   const beerList = useSelector(state => state.beerListReducer);
@@ -48,7 +49,7 @@ const BeerList = () => {
   });
 
   return (
-    <div style={{ maxWidth: '100%' }}>
+    <S.Container>
       <MaterialTable
         components={{
           Pagination: PatchedPagination,
@@ -61,8 +62,13 @@ const BeerList = () => {
           console.log(sourceIndex, destinationIndex)
         }
       />
-    </div>
+    </S.Container>
   );
 };
+
+const S = {};
+S.Container = styled.section`
+  ${ContainerStyle}
+`;
 
 export default BeerList;
