@@ -18,7 +18,6 @@ const Nav = () => {
 
   return (
     <Header>
-      {/* <div className="logo" /> */}
       <Menu theme="dark" mode="horizontal" selectedKeys={currentPath}>
         {Object.entries(menuList).map(([menuName, path]) => (
           <Menu.Item
