@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import GlobalStyle from './styles/globalStyle';
+import { ThemeProvider } from 'styled-components/macro';
+import theme from './Styles/theme';
+import GlobalStyle from './Styles/globalStyle';
 import Routes from './Routes';
 import rootReducer, { rootSaga } from './Modules';
 import 'antd/dist/antd.css';
@@ -21,8 +23,10 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyle />
-    <Routes />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Routes />
+    </ThemeProvider>
   </Provider>,
   document.getElementById('root'),
 );

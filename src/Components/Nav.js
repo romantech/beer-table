@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
 const { Header } = Layout;
@@ -8,23 +9,18 @@ const menuList = {
   BEERs: '/beerlist',
   CART: '/cart',
 };
-const { pathname } = window.location;
 
-const Nav = () => {
-  const history = useHistory();
-  const [currentPath, setCurrentPath] = useState(
-    pathname === '/' ? '/home' : pathname,
-  );
+const Nav = ({ history }) => {
+  const { pathname } = history.location;
 
   return (
     <Header>
-      <Menu theme="dark" mode="horizontal" selectedKeys={currentPath}>
+      <Menu theme="dark" mode="horizontal" selectedKeys={pathname}>
         {Object.entries(menuList).map(([menuName, path]) => (
           <Menu.Item
             key={path}
             onClick={() => {
               history.push(path);
-              setCurrentPath(path);
             }}
           >
             {menuName}
@@ -35,4 +31,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

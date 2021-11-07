@@ -1,3 +1,5 @@
+// Duck 패턴 https://github.com/JisuPark/ducks-modular-redux
+
 const initialState = {
   loading: false,
   data: null,
