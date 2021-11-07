@@ -4,19 +4,20 @@ import { withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
 const { Header } = Layout;
-const menuList = {
+const sitemap = {
   HOME: '/home',
   BEERs: '/beerlist',
   CART: '/cart',
 };
 
+// withRouter를 이용해 라우터 호출이 아닌 컴포넌트도 history 객체에 접근하도록 설정
 const Nav = ({ history }) => {
   const { pathname } = history.location;
 
   return (
     <Header>
       <Menu theme="dark" mode="horizontal" selectedKeys={pathname}>
-        {Object.entries(menuList).map(([menuName, path]) => (
+        {Object.entries(sitemap).map(([menuName, path]) => (
           <Menu.Item
             key={path}
             onClick={() => {

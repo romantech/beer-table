@@ -2,15 +2,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
-import bearIcon from '../Assets/icons8-beer-glass-96.png';
+import bearIcon from '../Assets/beerIcon.png';
 
 const Home = ({ history }) => {
-  const beerList = useSelector(s => s.beerListReducer);
+  const beerList = useSelector(state => state.beerListReducer);
 
   return (
     <S.Container>
       <h1>
-        저장된 맥주 정보 <span>{`${beerList.data?.length ?? 0}개`}</span>
+        저장된 맥주 정보 <span>{`${beerList.data?.length ?? 88}개`}</span>
       </h1>
       <button type="button" onClick={() => history.push('/beerlist')}>
         <h2>맥주 리스트 보러가기</h2>
