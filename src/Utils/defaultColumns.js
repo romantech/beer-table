@@ -3,14 +3,16 @@ export default [
     title: 'NAME',
     field: 'name',
     cellStyle: {
-      whiteSpace: 'nowrap',
+      // whiteSpace: 'nowrap',
+      minWidth: '18rem',
     },
   },
   {
     title: 'TAGLINE',
     field: 'tagline',
     cellStyle: {
-      whiteSpace: 'nowrap',
+      // whiteSpace: 'nowrap',
+      minWidth: '18rem',
     },
   },
   {

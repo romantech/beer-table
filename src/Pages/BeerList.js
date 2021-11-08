@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { useSelector, useDispatch } from 'react-redux';
@@ -29,15 +28,13 @@ const BeerList = () => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns));
   };
 
-  const tableStyles = {
+  const tableOptions = {
     headerStyle: {
       backgroundColor: '#1890FF',
       color: '#FFF',
       fontSize: '1rem',
     },
-    rowStyle: rowData => ({
-      backgroundColor: selectedRow === rowData.tableData.id ? '#EEE' : '#FFF',
-    }),
+    pageSizeOptions: [5, 8],
   };
 
   const filteredData = filterDataByAbv(selectedRange, renderData);
@@ -47,9 +44,10 @@ const BeerList = () => {
       <S.FilterArea>
         {abvRange.map(({ range, unit }, idx) => {
           const props = { selectedRange, setSelectedRange, range, unit, idx };
+          // eslint-disable-next-line react/jsx-props-no-spreading
           return <AbvFilterButton key={range + unit} {...props} />;
         })}
-        <h3>알콜 도수(ABV) 선택</h3>
+        <h3>알콜 도수(ABV) 필터</h3>
       </S.FilterArea>
       <MaterialTable
         components={{
@@ -66,7 +64,7 @@ const BeerList = () => {
         isLoading={!(isDataLoaded === false && isColumnLoaded === false)}
         onRowClick={(_, selected) => setSelectedRow(selected.tableData.id)}
         onColumnDragged={columnDragHandler}
-        options={tableStyles}
+        options={tableOptions}
       />
     </S.Container>
   );
@@ -84,7 +82,7 @@ S.FilterArea = styled.section`
   height: 10vh;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -93,6 +91,7 @@ S.FilterArea = styled.section`
   h3 {
     color: white;
     margin: 0;
+    font-size: 0.99rem;
   }
 `;
 

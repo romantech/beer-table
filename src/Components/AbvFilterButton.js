@@ -10,8 +10,8 @@ const FilterButton = ({
   idx,
 }) => {
   const [fromAbv, toAbv] = range;
-  const isFirst = fromAbv + toAbv === 103;
-  const isLast = fromAbv + toAbv === 110;
+  const isFirst = fromAbv + toAbv === 103; // 첫번째 인덱스는 All 전체
+  const isLast = fromAbv + toAbv === 110; // 마지막 인덱스는 10% 이상
 
   return (
     <S.ButtonWrapper
@@ -48,7 +48,7 @@ S.ButtonWrapper = styled.div`
     ${({ selected }) =>
       selected === false &&
       css`
-        background: lightgray;
+        background: #e0e0e0;
       `}
   }
 
