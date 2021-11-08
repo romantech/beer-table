@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
-import { ContainerStyle } from '../Styles/commonStyles';
+import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import abvRange from '../Utils/abvRange';
 import AbvFilterButton from '../Components/AbvFilterButton';
@@ -34,7 +34,7 @@ const BeerList = () => {
       color: '#FFF',
       fontSize: '1rem',
     },
-    pageSizeOptions: [5, 8],
+    pageSizeOptions: [5, 8, 15],
   };
 
   const filteredData = filterDataByAbv(selectedRange, renderData);
@@ -49,23 +49,25 @@ const BeerList = () => {
         })}
         <h3>알콜 도수(ABV) 필터</h3>
       </S.FilterArea>
-      <MaterialTable
-        components={{
-          Pagination: PatchedPagination,
-        }}
-        columns={columns.map(({ field, title, cellStyle }) => ({
-          field,
-          title,
-          cellStyle,
-        }))}
-        data={filteredData}
-        title="BEER LIST"
-        icons={tableIcons}
-        isLoading={!(isDataLoaded === false && isColumnLoaded === false)}
-        onRowClick={(_, selected) => setSelectedRow(selected.tableData.id)}
-        onColumnDragged={columnDragHandler}
-        options={tableOptions}
-      />
+      <S.TableWrapper>
+        <MaterialTable
+          components={{
+            Pagination: PatchedPagination,
+          }}
+          columns={columns.map(({ field, title, cellStyle }) => ({
+            field,
+            title,
+            cellStyle,
+          }))}
+          data={filteredData}
+          title="BEER LIST"
+          icons={tableIcons}
+          isLoading={!(isDataLoaded === false && isColumnLoaded === false)}
+          onRowClick={(_, selected) => setSelectedRow(selected.tableData.id)}
+          onColumnDragged={columnDragHandler}
+          options={tableOptions}
+        />
+      </S.TableWrapper>
     </S.Container>
   );
 };
@@ -76,9 +78,15 @@ S.Container = styled.section`
   font-size: 1rem;
 `;
 
+S.TableWrapper = styled.section`
+  ${ScrollStyle}
+  width: 75vw;
+  max-height: 68vh;
+  overflow: auto;
+`;
+
 S.FilterArea = styled.section`
   background: #ffffff2d;
-  width: 100%;
   height: 10vh;
   margin-bottom: 10px;
   border-radius: 10px;

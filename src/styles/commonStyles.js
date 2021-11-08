@@ -26,3 +26,27 @@ export const UnderlineStyle = css`
     left: 0;
   }
 `;
+
+export const ScrollStyle = css`
+  /* width */
+  ::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+    margin: 1px 8px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff2d;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff49;
+  }
+`;
