@@ -1,52 +1,26 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
 import { ContainerStyle } from '../Styles/commonStyles';
+import { setColumns } from '../Modules/listColumn';
+import tableColumns from '../Utils/tableColumns';
 
 const BeerList = () => {
-  const beerList = useSelector(state => state.beerListReducer);
-  const columns = [
-    {
-      title: 'NAME',
-      field: 'name',
-    },
-    {
-      title: 'TAGLINE',
-      field: 'tagline',
-    },
-    {
-      title: 'ABV',
-      field: 'abv',
-    },
-    {
-      title: 'IBU',
-      field: 'ibu',
-    },
-    {
-      title: 'SRM',
-      field: 'srm',
-    },
-    {
-      title: 'EBC',
-      field: 'ebc',
-    },
-    {
-      title: 'PH',
-      field: 'ph',
-    },
-  ];
+  const dispatch = useDispatch();
+  const { renderData } = useSelector(state => ({
+    renderData: state.beerListReducer.renderData,
+  }));
+  const { modifiedColumns, isModified } = useSelector(state => ({
+    modifiedColumns: state.listColumnReducer.modifiedColumns,
+    isModified: state.listColumnReducer.isModified,
+  }));
 
-  const filteredData = beerList.data?.map(beer => {
-    return columns.reduce((acc, cur) => {
-      if (cur.field in beer) {
-        acc[cur.field] = beer[cur.field];
-      }
-      return acc;
-    }, {});
-  });
+  const columnDragHandler = (sourceIndex, destinationIndex) => {
+    dispatch(setColumns(sourceIndex, destinationIndex));
+  };
 
   return (
     <S.Container>
@@ -54,13 +28,11 @@ const BeerList = () => {
         components={{
           Pagination: PatchedPagination,
         }}
-        columns={columns}
-        data={filteredData}
+        columns={tableColumns}
+        data={renderData}
         title="BEER LIST"
         icons={tableIcons}
-        onColumnDragged={(sourceIndex, destinationIndex) =>
-          console.log(sourceIndex, destinationIndex)
-        }
+        onColumnDragged={columnDragHandler}
       />
     </S.Container>
   );

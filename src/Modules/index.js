@@ -4,14 +4,23 @@ import { all } from 'redux-saga/effects';
 // watcher saga -> actions -> worker saga
 // import loading from "./loading";
 import { enableES5 } from 'immer';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import beerListReducer from './beerList';
+import listColumnReducer from './listColumn';
 import getBeerListSaga from './saga/beerListSaga';
 
 enableES5();
 
-const rootReducer = combineReducers({ beerListReducer });
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['beerListReducer', 'listColumnReducer'],
+};
 
-export default rootReducer;
+const rootReducer = combineReducers({ beerListReducer, listColumnReducer });
+
+export default persistReducer(persistConfig, rootReducer);
 
 // Saga 실행 과정
 // 1)Action Dispatch 2)Saga 미들웨어 실행(takeLatest) 3)비동기 통신(yield call)

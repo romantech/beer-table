@@ -2,7 +2,8 @@
 
 const initialState = {
   loading: false,
-  data: null,
+  rawData: null,
+  renderData: null,
   error: null,
 };
 
@@ -13,9 +14,9 @@ export const GET_BEER_LIST_FAILED = 'beerlist/GET_BEER_LIST_FAILED';
 export const getBeerListRequest = () => ({
   type: GET_BEER_LIST_REQUEST,
 });
-export const getBeerListSuccess = payload => ({
+export const getBeerListSuccess = (rawData, renderData) => ({
   type: GET_BEER_LIST_SUCCESS,
-  payload,
+  payload: { rawData, renderData },
 });
 export const getBeerListFailed = payload => ({
   type: GET_BEER_LIST_FAILED,
@@ -33,7 +34,8 @@ const beerListReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        rawData: action.payload.rawData,
+        renderData: action.payload.renderData,
       };
     case GET_BEER_LIST_FAILED:
       return {

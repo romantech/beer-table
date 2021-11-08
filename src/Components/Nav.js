@@ -2,13 +2,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import sitemap from '../Utils/sitemap';
 
 const { Header } = Layout;
-const sitemap = {
-  HOME: '/home',
-  BEERs: '/beerlist',
-  CART: '/cart',
-};
 
 // withRouter를 이용해 라우터 호출이 아닌 컴포넌트도 history 객체에 접근하도록 설정
 const Nav = ({ history }) => {
@@ -17,14 +13,15 @@ const Nav = ({ history }) => {
   return (
     <Header>
       <Menu theme="dark" mode="horizontal" selectedKeys={pathname}>
-        {Object.entries(sitemap).map(([menuName, path]) => (
+        {sitemap.map(({ name, path }) => (
           <Menu.Item
             key={path}
             onClick={() => {
-              history.push(path);
+              if (name === 'BEERs') window.location.assign(path);
+              else history.push(path);
             }}
           >
-            {menuName}
+            {name}
           </Menu.Item>
         ))}
       </Menu>
