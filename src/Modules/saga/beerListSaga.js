@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import tableColumns from '../../Utils/tableColumns';
+import defaultColumns from '../../Utils/defaultColumns';
 import {
   GET_BEER_LIST_REQUEST,
   getBeerListSuccess,
@@ -10,8 +10,8 @@ import APIs from '../../APIs';
 function* getBeerList() {
   try {
     const { data: rawData } = yield call(APIs.getBeerList); // yield call은 결과 반환시까지 기다려줌
-    const renderData = rawData?.map(beer => {
-      return tableColumns.reduce((acc, cur) => {
+    const renderData = rawData.map(beer => {
+      return defaultColumns.reduce((acc, cur) => {
         if (cur.field in beer) {
           acc[cur.field] = beer[cur.field];
         }

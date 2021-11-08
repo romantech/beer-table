@@ -7,7 +7,7 @@ import { enableES5 } from 'immer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import beerListReducer from './beerList';
-import listColumnReducer from './listColumn';
+import listColumnReducer from './listColumns';
 import getBeerListSaga from './saga/beerListSaga';
 import listColumnSaga from './saga/listColumnSaga';
 

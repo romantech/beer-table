@@ -5,6 +5,7 @@ export const ContainerStyle = css`
   height: calc(100vh - 64px);
   display: grid;
   place-content: center;
+  overflow: auto;
 `;
 
 export const UnderlineStyle = css`

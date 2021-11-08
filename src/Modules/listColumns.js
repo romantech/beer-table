@@ -1,16 +1,15 @@
-import tableColumns from '../Utils/tableColumns';
+import defaultColumns from '../Utils/defaultColumns';
 
 const initialState = {
   loading: false,
-  isModified: false,
   error: null,
-  originalColumns: tableColumns,
-  modifiedColumns: tableColumns,
+  defaultColumns,
+  modifiedColumns: defaultColumns,
 };
 
-export const SET_COLUMNS_REQUEST = 'listColumn/SET_COLUMNS_REQUEST';
-export const SET_COLUMNS_SUCCESS = 'listColumn/SET_COLUMNS_SUCCESS';
-export const SET_COLUMNS_FAILED = 'listColumn/SET_COLUMNS_FAILED';
+export const SET_COLUMNS_REQUEST = 'listColumns/SET_COLUMNS_REQUEST';
+export const SET_COLUMNS_SUCCESS = 'listColumns/SET_COLUMNS_SUCCESS';
+export const SET_COLUMNS_FAILED = 'listColumns/SET_COLUMNS_FAILED';
 
 export const setColumnsRequest = (fromIdx, toIdx, columns) => ({
   type: SET_COLUMNS_REQUEST,
@@ -38,7 +37,6 @@ const listColumnReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        isModified: true,
         error: null,
         modifiedColumns: action.payload,
       };
@@ -46,7 +44,6 @@ const listColumnReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        isModified: false,
         error: action.payload,
       };
     default:

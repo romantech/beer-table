@@ -12,7 +12,12 @@ const Nav = ({ history }) => {
 
   return (
     <Header>
-      <Menu theme="dark" mode="horizontal" selectedKeys={pathname}>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        selectedKeys={pathname}
+        style={{ fontSize: '1rem' }}
+      >
         {sitemap.map(({ name, path }) => (
           <Menu.Item
             key={path}

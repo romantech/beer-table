@@ -2,10 +2,16 @@ export default [
   {
     title: 'NAME',
     field: 'name',
+    cellStyle: {
+      whiteSpace: 'nowrap',
+    },
   },
   {
     title: 'TAGLINE',
     field: 'tagline',
+    cellStyle: {
+      whiteSpace: 'nowrap',
+    },
   },
   {
     title: 'ABV',

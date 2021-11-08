@@ -11,7 +11,7 @@ const Home = ({ history }) => {
   return (
     <S.Container>
       <h1>
-        저장된 맥주 정보 <span>{`${beerList.data?.length ?? 88}개`}</span>
+        저장된 맥주 정보 <span>{`${beerList.renderData?.length ?? 88}개`}</span>
       </h1>
       <button type="button" onClick={() => history.push('/beerlist')}>
         <h2>맥주 리스트 보러가기</h2>
