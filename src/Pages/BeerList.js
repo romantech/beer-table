@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
+import { Modal } from 'antd';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
@@ -12,7 +13,8 @@ import filterDataByAbv from '../Utils/filterDataByAbv';
 
 const BeerList = () => {
   const dispatch = useDispatch();
-  const { renderData, isDataLoaded } = useSelector(state => ({
+  const { rawData, renderData, isDataLoaded } = useSelector(state => ({
+    rawData: state.beerListReducer.rawData,
     renderData: state.beerListReducer.renderData,
     isDataLoaded: state.beerListReducer.loading,
   }));
@@ -21,8 +23,7 @@ const BeerList = () => {
     isColumnLoaded: state.listColumnReducer.loading,
   }));
 
-  const [selectedRow, setSelectedRow] = useState(null);
-  const [selectedRange, setSelectedRange] = useState(0);
+  const [selectedRange, setSelectedRange] = useState(new Set([]));
 
   const columnDragHandler = (fromIdx, toIdx) => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns));
@@ -34,10 +35,25 @@ const BeerList = () => {
       color: '#FFF',
       fontSize: '1rem',
     },
-    pageSizeOptions: [5, 8, 15],
+    pageSize: 6,
+    pageSizeOptions: [6, 10, 15],
   };
 
-  const filteredData = filterDataByAbv(selectedRange, renderData);
+  const rowClickHandler = (_, selected) => {
+    const { id } = selected.tableData;
+    Modal.info({
+      title: '맥주 상세 정보',
+      width: '50%',
+      content: <h1>모달</h1>,
+      onOk() {},
+    });
+  };
+
+  const filteredData = filterDataByAbv(
+    [...selectedRange],
+    renderData,
+    abvRange,
+  );
 
   return (
     <S.Container>
@@ -63,7 +79,7 @@ const BeerList = () => {
           title="BEER LIST"
           icons={tableIcons}
           isLoading={!(isDataLoaded === false && isColumnLoaded === false)}
-          onRowClick={(_, selected) => setSelectedRow(selected.tableData.id)}
+          onRowClick={rowClickHandler}
           onColumnDragged={columnDragHandler}
           options={tableOptions}
         />

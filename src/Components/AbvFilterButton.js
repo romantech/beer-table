@@ -10,18 +10,21 @@ const FilterButton = ({
   idx,
 }) => {
   const [fromAbv, toAbv] = range;
-  const isFirst = fromAbv + toAbv === 103; // 첫번째 인덱스는 All 전체
   const isLast = fromAbv + toAbv === 110; // 마지막 인덱스는 10% 이상
 
+  const clickHandler = () => {
+    if (selectedRange.has(idx)) {
+      selectedRange.delete(idx);
+    } else {
+      selectedRange.add(idx);
+    }
+    setSelectedRange(new Set([...selectedRange]));
+  };
+
   return (
-    <S.ButtonWrapper
-      selected={selectedRange === idx}
-      onClick={() => {
-        setSelectedRange(idx);
-      }}
-    >
+    <S.ButtonWrapper selected={selectedRange.has(idx)} onClick={clickHandler}>
       <button type="button">
-        {isFirst || isLast ? unit : `${fromAbv}-${toAbv}${unit}`}
+        {isLast ? unit : `${fromAbv}-${toAbv}${unit}`}
       </button>
     </S.ButtonWrapper>
   );
@@ -45,11 +48,7 @@ S.ButtonWrapper = styled.div`
     `}
 
   :hover {
-    ${({ selected }) =>
-      selected === false &&
-      css`
-        background: #e0e0e0;
-      `}
+    background: ${({ selected }) => (selected ? '#319cff' : '#e0e0e0;')};
   }
 
   button {

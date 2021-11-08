@@ -1,10 +1,10 @@
 export default [
   {
-    range: [3, 100],
-    unit: 'ALL',
+    range: [3, 4],
+    unit: '%',
   },
   {
-    range: [3, 4],
+    range: [4, 5],
     unit: '%',
   },
   {
@@ -20,7 +20,7 @@ export default [
     unit: '%',
   },
   {
-    range: [9, 10],
+    range: [8, 9],
     unit: '%',
   },
   {

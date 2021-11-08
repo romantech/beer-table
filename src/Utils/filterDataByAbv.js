@@ -1,10 +1,13 @@
-import abvRange from './abvRange';
-
-export default (selectedRange, data) => {
-  const { range } = abvRange[selectedRange];
-  const filteredData = data?.filter(({ abv }) => {
-    if (range[0] <= abv && range[1] >= abv) return true;
-    return false;
-  });
-  return filteredData;
+export default (selectedRange, data, abvRange) => {
+  if (selectedRange.length === 0) {
+    return data;
+  }
+  return selectedRange.reduce((acc, cur) => {
+    const {
+      range: [fromRange, toRange],
+    } = abvRange[cur];
+    return acc.concat(
+      data?.filter(({ abv }) => !!(fromRange <= abv && toRange >= abv)),
+    );
+  }, []);
 };
