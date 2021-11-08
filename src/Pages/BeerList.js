@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
 import { ContainerStyle } from '../Styles/commonStyles';
-import { setColumns } from '../Modules/listColumn';
-import tableColumns from '../Utils/tableColumns';
+import { setColumnsRequest } from '../Modules/listColumn';
 
 const BeerList = () => {
   const dispatch = useDispatch();
-  const { renderData } = useSelector(state => ({
+  const { renderData, dataLoading } = useSelector(state => ({
+    dataLoading: state.beerListReducer.loading,
     renderData: state.beerListReducer.renderData,
   }));
-  const { modifiedColumns, isModified } = useSelector(state => ({
+  const { modifiedColumns, isModified, columnLoading } = useSelector(state => ({
     modifiedColumns: state.listColumnReducer.modifiedColumns,
     isModified: state.listColumnReducer.isModified,
+    columnLoading: state.listColumnReducer.loading,
   }));
 
   const columnDragHandler = (sourceIndex, destinationIndex) => {
-    dispatch(setColumns(sourceIndex, destinationIndex));
+    dispatch(setColumnsRequest(sourceIndex, destinationIndex, modifiedColumns));
   };
 
   return (
@@ -28,10 +29,11 @@ const BeerList = () => {
         components={{
           Pagination: PatchedPagination,
         }}
-        columns={tableColumns}
+        columns={modifiedColumns.map(({ field, title }) => ({ field, title }))}
         data={renderData}
         title="BEER LIST"
         icons={tableIcons}
+        isLoading={!(dataLoading === false && columnLoading === false)}
         onColumnDragged={columnDragHandler}
       />
     </S.Container>

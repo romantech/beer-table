@@ -17,8 +17,8 @@ const Nav = ({ history }) => {
           <Menu.Item
             key={path}
             onClick={() => {
-              if (name === 'BEERs') window.location.assign(path);
-              else history.push(path);
+              // if (name === 'BEERs') window.location.assign(path);
+              history.push(path);
             }}
           >
             {name}

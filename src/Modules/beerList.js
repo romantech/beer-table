@@ -34,6 +34,7 @@ const beerListReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        error: null,
         rawData: action.payload.rawData,
         renderData: action.payload.renderData,
       };

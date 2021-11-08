@@ -9,6 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import beerListReducer from './beerList';
 import listColumnReducer from './listColumn';
 import getBeerListSaga from './saga/beerListSaga';
+import listColumnSaga from './saga/listColumnSaga';
 
 enableES5();
 
@@ -26,7 +27,7 @@ export default persistReducer(persistConfig, rootReducer);
 // 1)Action Dispatch 2)Saga 미들웨어 실행(takeLatest) 3)비동기 통신(yield call)
 // 4)통신 성공/실패에 따라 상응하는 액션 Dispatch(yield put) 5)상태 업데이트
 export function* rootSaga() {
-  yield all([getBeerListSaga()]);
+  yield all([getBeerListSaga(), listColumnSaga()]);
 }
 
 /**
