@@ -1,12 +1,16 @@
 // Duck 패턴 https://github.com/JisuPark/ducks-modular-redux
 
-import { beerListColumns } from '../Constants';
+import { beerInfoEntries } from '../Constants';
+
+const tableColumns = beerInfoEntries
+  .filter(({ table }) => table)
+  .map(({ title, field, cellStyle }) => ({ title, field, cellStyle }));
 
 const initialState = {
   loading: false,
   error: null,
-  beerListColumns,
-  modifiedColumns: beerListColumns,
+  defaultColumns: tableColumns,
+  modifiedColumns: tableColumns,
 };
 
 export const SET_COLUMNS_REQUEST = 'listColumns/SET_COLUMNS_REQUEST';

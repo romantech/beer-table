@@ -67,7 +67,7 @@ const BeerList = () => {
             title,
             cellStyle,
           }))}
-          data={filteredData}
+          data={filteredData ?? []}
           title="BEER LIST"
           icons={tableIcons}
           isLoading={!(isDataLoaded === false && isColumnLoaded === false)}

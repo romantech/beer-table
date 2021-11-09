@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
-import bearIcon from '../Assets/beerIcon.png';
+import beerIcon from '../Assets/beer.png';
 import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
 const Home = ({ history }) => {
@@ -15,7 +15,7 @@ const Home = ({ history }) => {
       </h1>
       <button type="button" onClick={() => history.push('/beerlist')}>
         <h2>맥주 리스트 보러가기</h2>
-        <img src={bearIcon} alt="bearIcon" />
+        <img src={beerIcon} alt="beerIcon" />
       </button>
     </S.Container>
   );
@@ -64,7 +64,8 @@ S.Container = styled.section`
   img {
     height: 60px;
     position: relative;
-    top: -10px;
+    top: -13px;
+    margin-left: 10px;
   }
 `;
 

@@ -48,7 +48,7 @@ export const abvRange = [
   },
 ];
 
-export const beerListColumns = [
+export const beerInfoEntries = [
   {
     title: 'NAME',
     field: 'name',
@@ -56,6 +56,8 @@ export const beerListColumns = [
       // whiteSpace: 'nowrap',
       minWidth: '18rem',
     },
+    table: true,
+    modal: true,
   },
   {
     title: 'TAGLINE',
@@ -64,25 +66,73 @@ export const beerListColumns = [
       // whiteSpace: 'nowrap',
       minWidth: '18rem',
     },
+    table: true,
+    modal: true,
+  },
+  {
+    title: 'TAGLINE',
+    field: 'description',
+    table: false,
+    modal: true,
   },
   {
     title: 'ABV',
     field: 'abv',
+    table: true,
+    modal: true,
   },
   {
     title: 'IBU',
     field: 'ibu',
+    table: true,
+    modal: true,
   },
   {
     title: 'SRM',
     field: 'srm',
+    table: true,
+    modal: true,
   },
   {
     title: 'EBC',
     field: 'ebc',
+    table: true,
+    modal: true,
   },
   {
     title: 'PH',
     field: 'ph',
+    table: true,
+    modal: true,
+  },
+  {
+    title: 'ATTENUATION',
+    field: 'attenuation_level',
+    table: false,
+    modal: true,
+  },
+  {
+    title: 'TARGET FG',
+    field: 'target_fg',
+    table: false,
+    modal: true,
+  },
+  {
+    title: 'TARGET OG',
+    field: 'target_og',
+    table: false,
+    modal: true,
+  },
+  {
+    title: 'FIRST BREWED',
+    field: 'first_brewed',
+    table: false,
+    modal: true,
+  },
+  {
+    title: 'VOLUME',
+    field: 'volume',
+    table: false,
+    modal: true,
   },
 ];
