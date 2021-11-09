@@ -35,6 +35,8 @@ S.ButtonWrapper = styled.div`
   background: white;
   border-radius: 5px;
   width: 6vw;
+  min-width: 80px;
+  max-width: 120px;
   height: 5vh;
   cursor: pointer;
   display: grid;

@@ -7,7 +7,7 @@ import { enableES5 } from 'immer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import beerListReducer from './beerList';
-import cartListReducer from './cartList';
+import favoriteListReducer from './favoriteList';
 import listColumnReducer from './listColumns';
 import getBeerListSaga from './saga/beerListSaga';
 import listColumnSaga from './saga/listColumnSaga';
@@ -17,13 +17,13 @@ enableES5();
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['beerListReducer', 'listColumnReducer', 'cartListReducer'],
+  whitelist: ['beerListReducer', 'listColumnReducer', 'favoriteListReducer'],
 };
 
 const rootReducer = combineReducers({
   beerListReducer,
   listColumnReducer,
-  cartListReducer,
+  favoriteListReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

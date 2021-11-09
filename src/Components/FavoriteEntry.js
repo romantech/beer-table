@@ -2,17 +2,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
-import { removeCartAction } from '../Modules/cartList';
+import { removeFromFavorite } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
 import { showInfoModal, showConfirmModal } from '../Utils';
+import { beerInfoEntries } from '../Constants';
 
-const CartEntry = ({ data }) => {
+const FavoriteEntry = ({ data }) => {
   const dispatch = useDispatch();
   const removeHandler = () => {
     const options = {
       title: '주의',
-      content: `장바구니에서 삭제하시겠습니까?`,
-      onOk: () => dispatch(removeCartAction(data.id - 1)),
+      content: `즐겨찾기에서 삭제하시겠습니까?`,
+      onOk: () => dispatch(removeFromFavorite(data.id - 1)),
       onCancel: () => {},
     };
     showConfirmModal(options);
@@ -33,12 +34,13 @@ const CartEntry = ({ data }) => {
         <img src={data.image_url} alt="beer_image" />
       </div>
       <div>
-        <h1>{data.name}</h1>
+        <h1>
+          {data.name} <span>{data.tagline}</span>
+        </h1>
         <div>
-          <span>{`${data.volume.value} ${data.volume.unit}`}</span>
-          <span>{`ABV ${data.abv}`}</span>
-          <span>{`IBU ${data.ibu}`}</span>
-          <span>{`SRM ${data.srm || '0'}`}</span>
+          {beerInfoEntries.slice(3, 8).map(({ title, field }) => (
+            <span key={field}>{`${title} ${data[field]}`}</span>
+          ))}
         </div>
       </div>
       <div>
@@ -59,7 +61,7 @@ S.Wrapper = styled.section`
   align-items: center;
   padding: 30px;
   width: 100%;
-  height: 17vh;
+  height: 18vh;
   border-bottom: 1px solid lightgray;
   gap: 3rem;
 
@@ -84,7 +86,13 @@ S.Wrapper = styled.section`
 
     h1 {
       font-size: 1.4rem;
-      margin: 0;
+      margin: 5px 0;
+
+      span {
+        font-size: 0.9rem;
+        margin-left: 5px;
+        font-style: italic;
+      }
     }
 
     div {
@@ -119,4 +127,4 @@ S.Wrapper = styled.section`
   }
 `;
 
-export default CartEntry;
+export default FavoriteEntry;

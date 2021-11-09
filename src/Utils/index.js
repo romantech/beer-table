@@ -39,12 +39,12 @@ export const showAutoCloseModal = options => {
   let secondsToGo = 2;
   const modal = Modal.info({
     ...options,
-    content: options.content + ` ${secondsToGo}후에 창이 닫힙니다`,
+    content: options.content + ` ${secondsToGo}후 창이 닫힙니다`,
   });
   const timer = setInterval(() => {
     secondsToGo -= 1;
     modal.update({
-      content: options.content + ` ${secondsToGo}후에 창이 닫힙니다`,
+      content: options.content + ` ${secondsToGo}후 창이 닫힙니다`,
     });
   }, 1000);
 

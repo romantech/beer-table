@@ -1,22 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCartAction } from '../Modules/cartList';
-import CartEntry from '../Components/CartEntry';
+import { clearFavorite } from '../Modules/favoriteList';
+import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
 import { showConfirmModal } from '../Utils';
 
-const CartListPage = () => {
+const FavoritePage = () => {
   const dispatch = useDispatch();
   const beers = useSelector(state => state.beerListReducer);
-  const cartList = useSelector(state => state.cartListReducer.cartList);
+  const favorites = useSelector(state => state.favoriteListReducer.favorites);
 
-  const clearCartHandler = () => {
-    if (cartList.length > 0) {
+  const clearFavoritesHandler = () => {
+    if (favorites.length > 0) {
       const options = {
         title: '주의',
-        content: `장바구니에 있는 모든 제품(${cartList.length})을 삭제하시겠습니까?`,
-        onOk: () => dispatch(clearCartAction()),
+        content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
+        onOk: () => dispatch(clearFavorite()),
         onCancel: () => {},
       };
       showConfirmModal(options);
@@ -26,14 +26,16 @@ const CartListPage = () => {
   return (
     <S.Container>
       <S.Header>
-        <h2>{`총 ${cartList?.length}개 제품이 추가되었습니다`}</h2>
-        <button type="button" onClick={clearCartHandler}>
+        <h2>{`총 ${favorites?.length}개 맥주가 추가되었습니다`}</h2>
+        <button type="button" onClick={clearFavoritesHandler}>
           모두 삭제
         </button>
       </S.Header>
-      <S.ListWrapper isEmpty={cartList.length === 0}>
-        {cartList.length > 0 ? (
-          cartList.map(id => <CartEntry key={id} data={beers.rawData[id]} />)
+      <S.ListWrapper isEmpty={favorites.length === 0}>
+        {favorites.length > 0 ? (
+          favorites.map(id => (
+            <FavoriteEntry key={id} data={beers.rawData[id]} />
+          ))
         ) : (
           <h1>空空如也 🍻</h1>
         )}
@@ -50,14 +52,14 @@ S.Container = styled.section`
 S.ListWrapper = styled.section`
   background: white;
   width: 60vw;
-  min-height: 17vh;
+  min-height: 18vh;
   max-height: 70vh;
   border-radius: 5px;
   overflow: auto;
 
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
   }
 
   /* Handle */
@@ -68,7 +70,7 @@ S.ListWrapper = styled.section`
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #808080c8;
+    background: #adadadc6;
   }
 
   ${({ isEmpty }) =>
@@ -105,6 +107,8 @@ S.Header = styled.section`
     border: none;
     cursor: pointer;
     width: 6vw;
+    min-width: 80px;
+    max-width: 110px;
     height: 5vh;
 
     :hover {
@@ -113,4 +117,4 @@ S.Header = styled.section`
   }
 `;
 
-export default CartListPage;
+export default FavoritePage;

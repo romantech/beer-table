@@ -12,8 +12,8 @@ export const sitemap = [
     path: '/beerlist',
   },
   {
-    name: 'CART',
-    path: '/cart',
+    name: 'FAVORITE',
+    path: '/favorite',
   },
 ];
 

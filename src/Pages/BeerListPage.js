@@ -8,7 +8,7 @@ import tableIcons from '../Assets/tableIcons';
 import Pagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
-import { addCartAction } from '../Modules/cartList';
+import { addToFavorite } from '../Modules/favoriteList';
 import AbvFilterButton from '../Components/AbvFilterButton';
 import {
   getTableOptions,
@@ -22,7 +22,7 @@ const BeerListPage = () => {
   const dispatch = useDispatch();
   const beers = useSelector(state => state.beerListReducer);
   const columns = useSelector(state => state.listColumnReducer);
-  const cartList = useSelector(state => state.cartListReducer.cartList);
+  const favorites = useSelector(state => state.favoriteListReducer.favorites);
 
   const [selectedRange, setSelectedRange] = useState(new Set());
 
@@ -41,10 +41,10 @@ const BeerListPage = () => {
 
   const actionClickHandler = (_, { tableData }) => {
     const { id } = tableData;
-    const isAdded = cartList?.some(cartId => cartId === id);
+    const isAdded = favorites?.some(favoriteId => favoriteId === id);
     if (!isAdded) {
-      dispatch(addCartAction(id));
-      showAutoCloseModal({ content: `장바구니에 추가되었습니다.` });
+      dispatch(addToFavorite(id));
+      showAutoCloseModal({ content: `즐겨찾기에 추가되었습니다.` });
     }
   };
 
@@ -85,12 +85,12 @@ const BeerListPage = () => {
           actions={[
             rowData => ({
               icon: AddBox,
-              tooltip: '장바구니 추가',
+              tooltip: '즐겨찾기 추가',
               onClick: actionClickHandler,
-              disabled: cartList.some(id => id === rowData.tableData.id),
+              disabled: favorites.some(id => id === rowData.tableData.id),
             }),
           ]}
-          localization={{ header: { actions: 'CART' } }}
+          localization={{ header: { actions: 'SAVE' } }}
         />
       </S.TableWrapper>
     </S.Container>

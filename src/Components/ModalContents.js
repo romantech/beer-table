@@ -46,7 +46,7 @@ S.Container = styled.section`
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: gray;
+    background: #a5a5a5;
   }
 
   display: flex;

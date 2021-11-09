@@ -9,7 +9,7 @@ import {
 import Nav from './Components/Nav';
 import HomePage from './Pages/HomePage';
 import BeerListPage from './Pages/BeerListPage';
-import CartListPage from './Pages/CartListPage';
+import FavoritePage from './Pages/FavoritePage';
 import { getBeerListRequest } from './Modules/beerList';
 
 const Routes = () => {
@@ -26,7 +26,7 @@ const Routes = () => {
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route exact path="/beerlist" component={BeerListPage} />
-        <Route exact path="/cart" component={CartListPage} />
+        <Route exact path="/favorite" component={FavoritePage} />
       </Switch>
     </Router>
   );
