@@ -40,10 +40,11 @@ const BeerListPage = () => {
   };
 
   const actionClickHandler = (_, { tableData }) => {
-    const isAdded = cartList?.some(id => id === tableData.id);
+    const { id } = tableData;
+    const isAdded = cartList?.some(cartId => cartId === id);
     if (!isAdded) {
-      dispatch(addCartAction(tableData.id));
-      showAutoCloseModal({ content: '장바구니에 추가했습니다.' });
+      dispatch(addCartAction(id));
+      showAutoCloseModal({ content: `장바구니에 추가되었습니다.` });
     }
   };
 

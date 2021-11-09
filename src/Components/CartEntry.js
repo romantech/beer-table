@@ -4,13 +4,18 @@ import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
 import { removeCartAction } from '../Modules/cartList';
 import ModalContents from './ModalContents';
-import { showInfoModal, showAutoCloseModal } from '../Utils';
+import { showInfoModal, showConfirmModal } from '../Utils';
 
 const CartEntry = ({ data }) => {
   const dispatch = useDispatch();
   const removeHandler = () => {
-    dispatch(removeCartAction(data.id - 1));
-    showAutoCloseModal({ content: '장바구니에서 삭제되었습니다.' });
+    const options = {
+      title: '주의',
+      content: `장바구니에서 삭제하시겠습니까?`,
+      onOk: () => dispatch(removeCartAction(data.id - 1)),
+      onCancel: () => {},
+    };
+    showConfirmModal(options);
   };
 
   const detailViewHandler = () => {

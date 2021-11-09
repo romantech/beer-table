@@ -1,12 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal } from 'antd';
 import { clearCartAction } from '../Modules/cartList';
 import CartEntry from '../Components/CartEntry';
-import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
-
-const { confirm } = Modal;
+import { ContainerStyle } from '../Styles/commonStyles';
+import { showConfirmModal } from '../Utils';
 
 const CartListPage = () => {
   const dispatch = useDispatch();
@@ -15,14 +13,13 @@ const CartListPage = () => {
 
   const clearCartHandler = () => {
     if (cartList.length > 0) {
-      confirm({
+      const options = {
         title: '주의',
         content: `장바구니에 있는 모든 제품(${cartList.length})을 삭제하시겠습니까?`,
-        onOk() {
-          dispatch(clearCartAction());
-        },
-        onCancel() {},
-      });
+        onOk: () => dispatch(clearCartAction()),
+        onCancel: () => {},
+      };
+      showConfirmModal(options);
     }
   };
 

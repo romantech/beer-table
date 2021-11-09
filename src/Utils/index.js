@@ -53,3 +53,15 @@ export const showAutoCloseModal = options => {
     modal.destroy();
   }, secondsToGo * 1000);
 };
+
+export const showConfirmModal = ({ onOk, onCancel, ...options }) => {
+  Modal.confirm({
+    ...options,
+    onOk() {
+      onOk();
+    },
+    onCancel() {
+      onCancel();
+    },
+  });
+};
