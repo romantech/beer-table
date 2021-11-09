@@ -22,7 +22,6 @@ const Nav = ({ history }) => {
           <Menu.Item
             key={path}
             onClick={() => {
-              // if (name === 'BEERs') window.location.assign(path);
               history.push(path);
             }}
           >

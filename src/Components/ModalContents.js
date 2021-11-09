@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { beerInfoEntries } from '../Constants';
 
-const TableModal = ({ data }) => {
+const ModalContents = ({ data }) => {
   return (
     <S.Container>
       <img src={data.image_url} alt="beer_image" />
@@ -113,4 +113,4 @@ S.ContentWrapper = styled.section`
   }
 `;
 
-export default TableModal;
+export default ModalContents;
