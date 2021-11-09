@@ -34,7 +34,7 @@ const BeerList = () => {
     const { id } = selected.tableData;
     Modal.info({
       title: '맥주 상세정보',
-      width: '50vw',
+      width: '58vw',
       content: <TableModal data={rawData[id]} />,
       onOk() {},
     });

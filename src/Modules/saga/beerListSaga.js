@@ -9,10 +9,10 @@ import APIs from '../../APIs';
 
 function* getBeerList() {
   try {
-    const { data: rawData } = yield call(APIs.getBeerList); // yield call은 결과 반환시까지 기다려줌
+    const { data: rawData } = yield call(APIs.getBeers); // yield call은 결과 반환시까지 기다려줌
     const renderData = rawData.map(raw =>
       beerInfoEntries
-        .filter(({ table }) => table)
+        .filter(({ isTable }) => isTable)
         .reduce((result, { field }) => {
           if (field in raw) {
             result[field] = raw[field];

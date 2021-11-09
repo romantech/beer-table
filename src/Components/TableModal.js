@@ -1,35 +1,30 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components/macro';
+import { beerInfoEntries } from '../Constants';
 
 const TableModal = ({ data }) => {
   return (
     <S.Container>
       <img src={data.image_url} alt="beer_image" />
       <S.ContentWrapper>
-        <h1>{data.name}</h1>
-        <h2>{data.tagline}</h2>
-        <h3>{data.description}</h3>
+        {beerInfoEntries.slice(0, 3).map(({ field }) => (
+          <h1 key={field}>{data[field]}</h1>
+        ))}
         <hr />
         <div>
           <strong>YOU CAN ENJOY WITH...</strong>
         </div>
         <ul>
-          {data.food_pairing?.map((el, idx) => (
-            <li key={idx}>{el}</li>
+          {data.food_pairing.map(el => (
+            <li key={el.split(' ')[0]}>{el}</li>
           ))}
         </ul>
         <hr />
-        <span>ABV : {data.abv}</span>
-        <span>IBU : {data.ibu}</span>
-        <span>SRM : {data.srm}</span>
-        <span>EBC : {data.ebc}</span>
-        <span>PH : {data.ph}</span>
-        <span>ATTENUATION : {data.attenuation_level}</span>
-        <span>TARGET FG : {data.target_fg}</span>
-        <span>TARGET OG : {data.target_og}</span>
-        <span>FIRST BREWED : {data.first_brewed}</span>
-        <span>VOLUME : {data.volume.value + ' ' + data.volume.unit}</span>
+        {beerInfoEntries.slice(3).map(({ title, field }) => (
+          <span key={field}>{`${title} : ${data[field]}`}</span>
+        ))}
+        <span>{`VOLUME : ${data.volume.value} ${data.volume.unit}`}</span>
       </S.ContentWrapper>
     </S.Container>
   );
@@ -62,17 +57,18 @@ S.Container = styled.section`
   overflow: auto;
 
   img {
-    height: 400px;
+    height: 55vh;
     object-fit: cover;
   }
 `;
 
 S.ContentWrapper = styled.section`
-  height: 400px;
+  height: 55vh;
   width: 60%;
   display: flex;
   flex-direction: column;
   text-align: left;
+  font-size: 0.95rem;
 
   ul {
     margin: 0;
@@ -83,22 +79,29 @@ S.ContentWrapper = styled.section`
 
   hr {
     width: 100%;
-    border: 2px solid black;
+    border: 1px solid black;
+    margin: 12px 0;
   }
 
   h1 {
-    margin: -5px 0 5px 0;
     text-align: center;
+    margin: 5px 0;
+    color: gray;
   }
 
-  h2 {
-    text-align: center;
-    color: #bdbdbd;
-    margin-top: 0;
+  h1:nth-child(1) {
+    color: black;
+  }
+
+  h1:nth-child(2) {
+    margin-top: -5px;
+    font-size: 1.3rem;
     font-style: italic;
   }
 
-  h3 {
+  h1:nth-child(3) {
+    text-align: left;
+    font-size: 1.1rem;
     font-style: italic;
   }
 

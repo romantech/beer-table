@@ -3,7 +3,7 @@
 import { beerInfoEntries } from '../Constants';
 
 const tableColumns = beerInfoEntries
-  .filter(({ table }) => table)
+  .filter(({ isTable }) => isTable)
   .map(({ title, field, cellStyle }) => ({ title, field, cellStyle }));
 
 const initialState = {
