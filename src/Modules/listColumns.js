@@ -1,10 +1,12 @@
-import defaultColumns from '../Utils/defaultColumns';
+// Duck 패턴 https://github.com/JisuPark/ducks-modular-redux
+
+import { beerListColumns } from '../Constants';
 
 const initialState = {
   loading: false,
   error: null,
-  defaultColumns,
-  modifiedColumns: defaultColumns,
+  beerListColumns,
+  modifiedColumns: beerListColumns,
 };
 
 export const SET_COLUMNS_REQUEST = 'listColumns/SET_COLUMNS_REQUEST';

@@ -7,9 +7,10 @@ import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
-import abvRange from '../Utils/abvRange';
 import AbvFilterButton from '../Components/AbvFilterButton';
-import filterDataByAbv from '../Utils/filterDataByAbv';
+import TableModal from '../Components/TableModal';
+import { getTableOptions, filterDataByAbv } from '../Utils';
+import { abvRange } from '../Constants';
 
 const BeerList = () => {
   const dispatch = useDispatch();
@@ -23,32 +24,23 @@ const BeerList = () => {
     isColumnLoaded: state.listColumnReducer.loading,
   }));
 
-  const [selectedRange, setSelectedRange] = useState(new Set([]));
+  const [selectedRange, setSelectedRange] = useState(new Set());
 
   const columnDragHandler = (fromIdx, toIdx) => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns));
   };
 
-  const tableOptions = {
-    headerStyle: {
-      backgroundColor: '#1890FF',
-      color: '#FFF',
-      fontSize: '1rem',
-    },
-    pageSize: 6,
-    pageSizeOptions: [6, 10, 15],
-  };
-
   const rowClickHandler = (_, selected) => {
     const { id } = selected.tableData;
     Modal.info({
-      title: '맥주 상세 정보',
-      width: '50%',
-      content: <h1>모달</h1>,
+      title: '맥주 상세정보',
+      width: '50vw',
+      content: <TableModal data={rawData[id]} />,
       onOk() {},
     });
   };
 
+  const tableOptions = getTableOptions({});
   const filteredData = filterDataByAbv(
     [...selectedRange],
     renderData,
@@ -61,7 +53,7 @@ const BeerList = () => {
         {abvRange.map(({ range, unit }, idx) => {
           const props = { selectedRange, setSelectedRange, range, unit, idx };
           // eslint-disable-next-line react/jsx-props-no-spreading
-          return <AbvFilterButton key={range + unit} {...props} />;
+          return <AbvFilterButton key={range.join('-') + unit} {...props} />;
         })}
         <h3>알콜 도수(ABV) 필터</h3>
       </S.FilterArea>

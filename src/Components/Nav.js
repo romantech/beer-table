@@ -2,7 +2,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import sitemap from '../Utils/sitemap';
+import { sitemap } from '../Constants';
 
 const { Header } = Layout;
 
