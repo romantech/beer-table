@@ -17,7 +17,7 @@ const ModalContents = ({ data }) => {
         </div>
         <ul>
           {data.food_pairing.map(el => (
-            <li key={el.split(' ')[0]}>{el}</li>
+            <li key={el.split('')}>{el}</li>
           ))}
         </ul>
         <hr />

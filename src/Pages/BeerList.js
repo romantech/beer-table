@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
-import { Modal } from 'antd';
 import { AddBox } from '@material-ui/icons';
+import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
 import PatchedPagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import { addCartAction } from '../Modules/cartList';
 import AbvFilterButton from '../Components/AbvFilterButton';
-import ModalContents from '../Components/ModalContents';
-import { getTableOptions, filterDataByAbv } from '../Utils';
+import {
+  getTableOptions,
+  filterDataByAbv,
+  showInfoModal,
+  showAutoCloseModal,
+} from '../Utils';
 import { abvRange } from '../Constants';
 
 const BeerList = () => {
@@ -33,25 +37,21 @@ const BeerList = () => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns));
   };
 
-  const rowClickHandler = (_, selected) => {
-    const { id } = selected.tableData;
-    Modal.info({
+  const rowClickHandler = (_, { tableData }) => {
+    const options = {
       title: '맥주 상세정보',
+      content: <ModalContents data={rawData[tableData.id]} />,
       width: '58vw',
-      content: <ModalContents data={rawData[id]} />,
-      onOk() {},
-    });
+    };
+    showInfoModal(options);
   };
 
   const actionClickHandler = (_, { tableData }) => {
     const isAdded = cartList?.some(id => id === tableData.id);
     if (!isAdded) {
       dispatch(addCartAction(tableData.id));
+      showAutoCloseModal({ content: '장바구니에 추가했습니다.' });
     }
-    Modal.info({
-      title: '알림',
-      content: isAdded ? '이미 추가한 상품입니다' : '장바구니에 추가했습니다',
-    });
   };
 
   const tableOptions = getTableOptions({});
