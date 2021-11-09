@@ -36,7 +36,7 @@ export const showInfoModal = options => {
 };
 
 export const showAutoCloseModal = options => {
-  let secondsToGo = 3;
+  let secondsToGo = 2;
   const modal = Modal.info({
     ...options,
     content: options.content + ` ${secondsToGo}후에 창이 닫힙니다`,

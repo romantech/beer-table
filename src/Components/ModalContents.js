@@ -49,21 +49,22 @@ S.Container = styled.section`
     background: gray;
   }
 
-  margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 6rem;
   overflow: auto;
+  height: 55vh;
 
   img {
-    height: 55vh;
+    max-height: 90%;
+    max-width: 20%;
     object-fit: cover;
   }
 `;
 
 S.ContentWrapper = styled.section`
-  height: 55vh;
+  height: 100%;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -94,7 +95,7 @@ S.ContentWrapper = styled.section`
   }
 
   h1:nth-child(2) {
-    margin-top: -5px;
+    margin-top: -3px;
     font-size: 1.3rem;
     font-style: italic;
   }

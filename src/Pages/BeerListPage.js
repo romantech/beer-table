@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { AddBox } from '@material-ui/icons';
 import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
-import PatchedPagination from '../Components/PatchedPagination';
+import Pagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import { addCartAction } from '../Modules/cartList';
@@ -18,29 +18,22 @@ import {
 } from '../Utils';
 import { abvRange } from '../Constants';
 
-const BeerList = () => {
+const BeerListPage = () => {
   const dispatch = useDispatch();
-  const { rawData, renderData, isDataLoaded } = useSelector(state => ({
-    rawData: state.beerListReducer.rawData,
-    renderData: state.beerListReducer.renderData,
-    isDataLoaded: state.beerListReducer.loading,
-  }));
-  const { columns, isColumnLoaded } = useSelector(state => ({
-    columns: state.listColumnReducer.modifiedColumns,
-    isColumnLoaded: state.listColumnReducer.loading,
-  }));
+  const beers = useSelector(state => state.beerListReducer);
+  const columns = useSelector(state => state.listColumnReducer);
   const cartList = useSelector(state => state.cartListReducer.cartList);
 
   const [selectedRange, setSelectedRange] = useState(new Set());
 
   const columnDragHandler = (fromIdx, toIdx) => {
-    dispatch(setColumnsRequest(fromIdx, toIdx, columns));
+    dispatch(setColumnsRequest(fromIdx, toIdx, columns.modifiedColumns));
   };
 
   const rowClickHandler = (_, { tableData }) => {
     const options = {
       title: '맥주 상세정보',
-      content: <ModalContents data={rawData[tableData.id]} />,
+      content: <ModalContents data={beers.rawData[tableData.id]} />,
       width: '58vw',
     };
     showInfoModal(options);
@@ -57,7 +50,7 @@ const BeerList = () => {
   const tableOptions = getTableOptions({});
   const filteredData = filterDataByAbv(
     [...selectedRange],
-    renderData,
+    beers.renderData,
     abvRange,
   );
 
@@ -73,18 +66,18 @@ const BeerList = () => {
       </S.FilterArea>
       <S.TableWrapper>
         <MaterialTable
-          components={{
-            Pagination: PatchedPagination,
-          }}
-          columns={columns.map(({ field, title, cellStyle }) => ({
-            field,
-            title,
-            cellStyle,
-          }))}
+          components={{ Pagination }}
+          columns={columns.modifiedColumns.map(
+            ({ field, title, cellStyle }) => ({
+              field,
+              title,
+              cellStyle,
+            }),
+          )}
           data={filteredData ?? []}
           title="BEER LIST"
           icons={tableIcons}
-          isLoading={!(isDataLoaded === false && isColumnLoaded === false)}
+          isLoading={!(beers.loading === false && columns.loading === false)}
           onRowClick={rowClickHandler}
           onColumnDragged={columnDragHandler}
           options={tableOptions}
@@ -120,7 +113,7 @@ S.FilterArea = styled.section`
   background: #ffffff2d;
   height: 10vh;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -134,4 +127,4 @@ S.FilterArea = styled.section`
   }
 `;
 
-export default BeerList;
+export default BeerListPage;

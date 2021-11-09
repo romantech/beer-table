@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import beerIcon from '../Assets/beer.png';
 import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
-const Home = ({ history }) => {
+const HomePage = ({ history }) => {
   const beerList = useSelector(state => state.beerListReducer);
 
   return (
@@ -69,4 +69,4 @@ S.Container = styled.section`
   }
 `;
 
-export default Home;
+export default HomePage;

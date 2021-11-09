@@ -7,9 +7,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Nav from './Components/Nav';
-import Home from './Pages/Home';
-import BeerList from './Pages/BeerList';
-import CartList from './Pages/CartList';
+import HomePage from './Pages/HomePage';
+import BeerListPage from './Pages/BeerListPage';
+import CartListPage from './Pages/CartListPage';
 import { getBeerListRequest } from './Modules/beerList';
 
 const Routes = () => {
@@ -23,10 +23,10 @@ const Routes = () => {
     <Router>
       <Nav />
       <Switch>
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route exact path="/beerlist" component={BeerList} />
-        <Route exact path="/cart" component={CartList} />
+        <Route exact path="/beerlist" component={BeerListPage} />
+        <Route exact path="/cart" component={CartListPage} />
       </Switch>
     </Router>
   );
