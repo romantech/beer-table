@@ -5,6 +5,7 @@ import { Modal, message } from 'antd';
 import { clearFavorite } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
+import ContentHeader from '../Components/ContentHeader';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,12 @@ const FavoritePage = () => {
 
   return (
     <S.Container>
-      <S.Header>
+      <ContentHeader align="space-between">
         <h2>{`총 ${favorites?.length}개 맥주가 추가되었습니다`}</h2>
-        <button type="button" onClick={clearFavoritesHandler}>
+        <S.Button type="button" onClick={clearFavoritesHandler}>
           모두 삭제
-        </button>
-      </S.Header>
+        </S.Button>
+      </ContentHeader>
       <S.ListWrapper isEmpty={favorites.length === 0}>
         {favorites.length > 0 ? (
           renderData.map(entry => <FavoriteEntry key={entry.id} data={entry} />)
@@ -88,35 +89,11 @@ S.ListWrapper = styled.section`
   }
 `;
 
-S.Header = styled.section`
-  background: #ffffff2d;
-  height: 10vh;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+S.Button = styled.button`
+  background: white;
 
-  h2 {
-    color: white;
-    margin: 0;
-  }
-
-  button {
-    background: white;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    width: 6vw;
-    min-width: 80px;
-    max-width: 110px;
-    height: 5vh;
-
-    :hover {
-      background: #e0e0e0;
-    }
+  :hover {
+    background: #e0e0e0;
   }
 `;
 

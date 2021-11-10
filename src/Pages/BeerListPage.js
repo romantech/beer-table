@@ -10,9 +10,9 @@ import Pagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import { addToFavorite } from '../Modules/favoriteList';
-import AbvFilterButton from '../Components/AbvFilterButton';
 import { getTableOptions, filterDataByAbv } from '../Utils';
 import { abvRange } from '../Constants';
+import AbvFilter from '../Components/AbvFilter';
 
 const BeerListPage = () => {
   const dispatch = useDispatch();
@@ -55,14 +55,10 @@ const BeerListPage = () => {
 
   return (
     <S.Container>
-      <S.FilterArea>
-        {abvRange.map(({ range, unit }, idx) => {
-          const props = { selectedRange, setSelectedRange, range, unit, idx };
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          return <AbvFilterButton key={range.join('-') + unit} {...props} />;
-        })}
-        <h3>알콜 도수(ABV) 필터</h3>
-      </S.FilterArea>
+      <AbvFilter
+        selectedRange={selectedRange}
+        setSelectedRange={setSelectedRange}
+      />
       <S.TableWrapper>
         <MaterialTable
           components={{ Pagination }}
@@ -74,7 +70,7 @@ const BeerListPage = () => {
             }),
           )}
           data={filteredData ?? []}
-          title={`총 ${filteredData?.length}개 맥주`}
+          title={`총 ${filteredData?.length || 0}개 맥주`}
           icons={tableIcons}
           isLoading={!(beers.loading === false && columns.loading === false)}
           onRowClick={rowClickHandler}

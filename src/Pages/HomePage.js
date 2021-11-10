@@ -11,7 +11,7 @@ const HomePage = ({ history }) => {
   return (
     <S.Container>
       <h1>
-        <span>{`${rawData?.length ?? 188}개`}</span> 맥주의 상세 가이드
+        <span>{`${rawData?.length ?? 0}개`}</span> 맥주의 상세 가이드
       </h1>
       <button type="button" onClick={() => history.push('/beerlist')}>
         <h2>맥주 리스트 보러가기</h2>
