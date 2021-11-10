@@ -9,6 +9,7 @@ const tableColumns = beerInfoEntries
 const initialState = {
   loading: false,
   error: null,
+  isModified: false,
   defaultColumns: [...tableColumns],
   modifiedColumns: [...tableColumns],
 };
@@ -46,6 +47,7 @@ const listColumnReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        isModified: true,
         error: null,
         modifiedColumns: action.payload,
       };
@@ -58,6 +60,7 @@ const listColumnReducer = (state = initialState, action) => {
     case RESET_COLUMNS:
       return {
         ...state,
+        isModified: false,
         modifiedColumns: [...state.defaultColumns],
       };
     default:

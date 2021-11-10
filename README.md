@@ -1,4 +1,4 @@
-# BEER TALBE 미니 프로젝트
+# BEER TABLE 미니 프로젝트
 
 ![beerTable_02](https://user-images.githubusercontent.com/8604840/141151347-ead2904b-3385-4092-b398-b62a8523c4c0.png)
 
@@ -36,12 +36,12 @@
 
 ### 맥주 리스트
 
-![iShot2021-11-10 13 10 47](https://user-images.githubusercontent.com/8604840/141050374-35f7d9ae-3fe1-4451-b900-4eda8818714b.png)
-
-### 맥주 상세정보 모달
-
-![beerTable_04](https://user-images.githubusercontent.com/8604840/141151353-f11f8218-fbb8-4abc-b2b4-b2d9e3ca0c3b.png)
+![beerTable_02](https://user-images.githubusercontent.com/8604840/141151347-ead2904b-3385-4092-b398-b62a8523c4c0.png)
 
 ### 즐겨찾기 리스트
 
 ![beerTable_03](https://user-images.githubusercontent.com/8604840/141151350-a7f3e83f-cd9e-4bd1-899b-562a0555f825.png)
+
+### 맥주 상세정보 모달
+
+![beerTable_04](https://user-images.githubusercontent.com/8604840/141151353-f11f8218-fbb8-4abc-b2b4-b2d9e3ca0c3b.png)

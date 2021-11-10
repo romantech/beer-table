@@ -14,16 +14,18 @@ const FavoritePage = () => {
   const { favorites } = useSelector(state => state.favoriteListReducer);
 
   const clearFavoritesHandler = () => {
-    if (favorites.length > 0) {
-      Modal.confirm({
-        title: '주의',
-        content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
-        onOk: () => {
-          dispatch(clearFavorite());
-          message.info('모든 즐겨찾기가 삭제 되었습니다');
-        },
-      });
+    if (favorites?.length === 0) {
+      message.warn('이미 장바구니가 비어있습니다');
+      return;
     }
+    Modal.confirm({
+      title: '주의',
+      content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
+      onOk: () => {
+        dispatch(clearFavorite());
+        message.success('모든 즐겨찾기가 삭제 되었습니다');
+      },
+    });
   };
 
   const renderData = beers?.filter(beer =>

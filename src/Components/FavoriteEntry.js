@@ -11,8 +11,8 @@ const FavoriteEntry = ({ data }) => {
   const dispatch = useDispatch();
 
   const removeHandler = () => {
-    message.info('삭제 되었습니다');
     dispatch(removeFromFavorite(data.id));
+    message.info('삭제 되었습니다');
   };
 
   const detailViewHandler = () => {
@@ -20,6 +20,7 @@ const FavoriteEntry = ({ data }) => {
       title: '맥주 상세정보',
       content: <ModalContents data={data} />,
       width: '58vw',
+      maskClosable: true,
     });
   };
 
@@ -43,7 +44,7 @@ const FavoriteEntry = ({ data }) => {
           자세히 보기
         </button>
         <Popconfirm
-          placement="top"
+          placement="left"
           title="해당 맥주를 삭제하시겠습니까?"
           onConfirm={removeHandler}
           okText="Yes"

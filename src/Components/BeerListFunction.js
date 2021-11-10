@@ -1,17 +1,24 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { Button, Tooltip } from 'antd';
+import { Button, Tooltip, Popconfirm, message } from 'antd';
 import { ControlFilled } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FunctionWrapper from './FunctionWrapper';
 import { abvRange } from '../Constants';
 import { resetColumns } from '../Modules/listColumns';
 
 const BeerListFunction = ({ selectedRange, setSelectedRange }) => {
+  const { isModified } = useSelector(state => state.listColumnReducer);
   const dispatch = useDispatch();
+
   const resetColumn = () => {
-    dispatch(resetColumns());
+    if (isModified) {
+      dispatch(resetColumns());
+      message.success('컬럼 순서를 초기화했습니다');
+    } else {
+      message.warn('컬럼 순서가 이미 초기화 상태입니다');
+    }
   };
 
   return (
@@ -37,14 +44,23 @@ const BeerListFunction = ({ selectedRange, setSelectedRange }) => {
         })}
         <h3>알콜 도수(ABV) 필터</h3>
       </div>
-      <Tooltip title="컬럼 초기화">
-        <Button
-          ghost
-          onClick={resetColumn}
-          icon={<ControlFilled style={{ fontSize: '1.8rem' }} />}
-          size="large"
-        />
-      </Tooltip>
+      <Popconfirm
+        placement="top"
+        title="컬럼 순서를 초기화하겠습니까?"
+        onConfirm={resetColumn}
+        onClick={() => isModified === false && resetColumn()}
+        okText="Yes"
+        cancelText="No"
+        disabled={isModified === false}
+      >
+        <Tooltip title="컬럼 순서 초기화" zIndex="0">
+          <Button
+            ghost
+            icon={<ControlFilled style={{ fontSize: '1.8rem' }} />}
+            size="large"
+          />
+        </Tooltip>
+      </Popconfirm>
     </FunctionWrapper>
   );
 };
