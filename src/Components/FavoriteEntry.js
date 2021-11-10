@@ -12,7 +12,7 @@ const FavoriteEntry = ({ data }) => {
 
   const removeHandler = () => {
     dispatch(removeFromFavorite(data.id));
-    message.info('삭제 되었습니다');
+    message.success('삭제 되었습니다');
   };
 
   const detailViewHandler = () => {
@@ -45,7 +45,7 @@ const FavoriteEntry = ({ data }) => {
         </button>
         <Popconfirm
           placement="left"
-          title="해당 맥주를 삭제하시겠습니까?"
+          title="즐겨찾기에서 삭제하시겠습니까?"
           onConfirm={removeHandler}
           okText="Yes"
           cancelText="No"
