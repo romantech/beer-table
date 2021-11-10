@@ -97,13 +97,14 @@ S.ContentWrapper = styled.section`
   h1:nth-child(2) {
     margin-top: -3px;
     font-size: 1.3rem;
-    font-style: italic;
+    font-weight: normal;
   }
 
   h1:nth-child(3) {
     text-align: left;
     font-size: 1.1rem;
     font-style: italic;
+    font-weight: normal;
   }
 
   span:after {

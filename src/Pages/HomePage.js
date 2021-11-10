@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import beerIcon from '../Assets/beer.png';
-import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
+import { ContainerStyle, UnderlineStyle } from '../Style/commonStyles';
 
 const HomePage = ({ history }) => {
   const beerList = useSelector(state => state.beerListReducer);
