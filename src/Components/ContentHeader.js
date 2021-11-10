@@ -2,8 +2,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const ContentHeader = ({ children, align }) => {
-  return <Wrapper align={align}>{children}</Wrapper>;
+const ContentHeader = ({ children }) => {
+  return <Wrapper>{children}</Wrapper>;
 };
 
 const Wrapper = styled.section`
@@ -14,13 +14,19 @@ const Wrapper = styled.section`
   padding: 2rem;
   display: flex;
   align-items: center;
-  justify-content: ${({ align }) => align};
+  justify-content: space-between;
   gap: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
   h2,
   h3 {
     margin: 0;
-    color: white;
+    color: #ffffffa4;
   }
 
   h3 {
@@ -29,12 +35,14 @@ const Wrapper = styled.section`
 
   button {
     border-radius: 5px;
-    width: 6vw;
-    min-width: 80px;
-    max-width: 120px;
-    height: 5vh;
+    width: fit-content;
+    padding: 15px;
     cursor: pointer;
     border: none;
+
+    svg {
+      width: 2rem;
+    }
   }
 `;
 

@@ -19,7 +19,7 @@ const FavoritePage = () => {
         content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
         onOk: () => {
           dispatch(clearFavorite());
-          message.info('삭제 되었습니다');
+          message.info('모든 즐겨찾기가 삭제 되었습니다');
         },
       });
     }
@@ -31,7 +31,7 @@ const FavoritePage = () => {
 
   return (
     <S.Container>
-      <ContentHeader align="space-between">
+      <ContentHeader>
         <h2>{`총 ${favorites?.length}개 맥주가 추가되었습니다`}</h2>
         <S.Button type="button" onClick={clearFavoritesHandler}>
           모두 삭제

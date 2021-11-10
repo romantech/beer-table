@@ -16,6 +16,7 @@ const initialState = {
 export const SET_COLUMNS_REQUEST = 'listColumns/SET_COLUMNS_REQUEST';
 export const SET_COLUMNS_SUCCESS = 'listColumns/SET_COLUMNS_SUCCESS';
 export const SET_COLUMNS_FAILED = 'listColumns/SET_COLUMNS_FAILED';
+export const RESET_COLUMNS = 'listColumns/RESET_COLUMNS';
 
 export const setColumnsRequest = (fromIdx, toIdx, columns) => ({
   type: SET_COLUMNS_REQUEST,
@@ -31,6 +32,8 @@ export const setColumnsFailed = payload => ({
   type: SET_COLUMNS_FAILED,
   payload,
 });
+
+export const resetColumns = () => ({ type: RESET_COLUMNS });
 
 const listColumnReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -51,6 +54,11 @@ const listColumnReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case RESET_COLUMNS:
+      return {
+        ...state,
+        modifiedColumns: [...state.defaultColumns],
       };
     default:
       return state;
