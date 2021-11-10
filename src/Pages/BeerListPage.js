@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import { AddBox } from '@material-ui/icons';
+import { notification, Modal } from 'antd';
 import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
 import Pagination from '../Components/PatchedPagination';
@@ -10,19 +11,14 @@ import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import { addToFavorite } from '../Modules/favoriteList';
 import AbvFilterButton from '../Components/AbvFilterButton';
-import {
-  getTableOptions,
-  filterDataByAbv,
-  showInfoModal,
-  showAutoCloseModal,
-} from '../Utils';
+import { getTableOptions, filterDataByAbv } from '../Utils';
 import { abvRange } from '../Constants';
 
 const BeerListPage = () => {
   const dispatch = useDispatch();
   const beers = useSelector(state => state.beerListReducer);
   const columns = useSelector(state => state.listColumnReducer);
-  const favorites = useSelector(state => state.favoriteListReducer.favorites);
+  const { favorites } = useSelector(state => state.favoriteListReducer);
 
   const [selectedRange, setSelectedRange] = useState(new Set());
 
@@ -30,21 +26,23 @@ const BeerListPage = () => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns.modifiedColumns));
   };
 
-  const rowClickHandler = (_, selected) => {
-    const options = {
+  const rowClickHandler = (_, { id }) => {
+    Modal.info({
       title: '맥주 상세정보',
-      content: <ModalContents data={beers.rawData[selected.id]} />,
+      content: <ModalContents data={beers.rawData[id]} />,
       width: '58vw',
-    };
-    showInfoModal(options);
+    });
   };
 
-  const actionClickHandler = (_, selected) => {
-    console.log(selected);
-    const isAdded = favorites?.some(id => id === selected.id);
+  const actionClickHandler = (_, { name, id }) => {
+    const isAdded = favorites?.some(favoriteId => favoriteId === id);
     if (!isAdded) {
-      dispatch(addToFavorite(selected.id));
-      showAutoCloseModal({ content: `즐겨찾기에 추가되었습니다.` });
+      dispatch(addToFavorite(id));
+      notification.open({
+        message: `${name}`,
+        description: '즐겨찾기에 추가되었습니다',
+        duration: 2.5,
+      });
     }
   };
 

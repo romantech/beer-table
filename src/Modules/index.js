@@ -18,6 +18,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['beerListReducer', 'listColumnReducer', 'favoriteListReducer'],
+  // whitelist: [],
 };
 
 const rootReducer = combineReducers({

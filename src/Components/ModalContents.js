@@ -4,11 +4,14 @@ import styled from 'styled-components/macro';
 import { beerInfoEntries } from '../Constants';
 
 const ModalContents = ({ data }) => {
+  const headers = beerInfoEntries.slice(1, 4);
+  const contents = beerInfoEntries.slice(4);
+
   return (
     <S.Container>
       <img src={data.image_url} alt="beer_image" />
       <S.ContentWrapper>
-        {beerInfoEntries.slice(1, 4).map(({ field }) => (
+        {headers.map(({ field }) => (
           <h1 key={field}>{data[field]}</h1>
         ))}
         <hr />
@@ -21,7 +24,7 @@ const ModalContents = ({ data }) => {
           ))}
         </ul>
         <hr />
-        {beerInfoEntries.slice(4).map(({ title, field }) => (
+        {contents.map(({ title, field }) => (
           <span key={field}>{`${title} : ${data[field]}`}</span>
         ))}
         <span>{`VOLUME : ${data.volume.value} ${data.volume.unit}`}</span>

@@ -1,5 +1,3 @@
-import { Modal } from 'antd';
-
 // 맥주 리스트 ABV 데이터 필터
 export const filterDataByAbv = (selectedRange, data, abvRange) => {
   if (selectedRange.length === 0) {
@@ -26,42 +24,4 @@ export const getTableOptions = styles => {
     pageSizeOptions: styles?.pageSizeOptions ?? [6, 10, 15],
   };
   return defaultOptions;
-};
-
-export const showInfoModal = options => {
-  Modal.info({
-    ...options,
-    onOk() {},
-  });
-};
-
-export const showAutoCloseModal = options => {
-  let secondsToGo = 2;
-  const modal = Modal.info({
-    ...options,
-    content: options.content + ` ${secondsToGo}후 창이 닫힙니다`,
-  });
-  const timer = setInterval(() => {
-    secondsToGo -= 1;
-    modal.update({
-      content: options.content + ` ${secondsToGo}후 창이 닫힙니다`,
-    });
-  }, 1000);
-
-  setTimeout(() => {
-    clearInterval(timer);
-    modal.destroy();
-  }, secondsToGo * 1000);
-};
-
-export const showConfirmModal = ({ onOk, onCancel, ...options }) => {
-  Modal.confirm({
-    ...options,
-    onOk() {
-      onOk();
-    },
-    onCancel() {
-      onCancel();
-    },
-  });
 };

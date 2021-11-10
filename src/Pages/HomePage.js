@@ -6,13 +6,12 @@ import beerIcon from '../Assets/beer.png';
 import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
 const HomePage = ({ history }) => {
-  const beerList = useSelector(state => state.beerListReducer);
+  const { rawData } = useSelector(state => state.beerListReducer);
 
   return (
     <S.Container>
       <h1>
-        <span>{`${beerList.renderData?.length ?? 188}개`}</span> 맥주의 상세
-        가이드
+        <span>{`${rawData?.length ?? 188}개`}</span> 맥주의 상세 가이드
       </h1>
       <button type="button" onClick={() => history.push('/beerlist')}>
         <h2>맥주 리스트 보러가기</h2>

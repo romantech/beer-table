@@ -1,30 +1,31 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
+import { Modal, message } from 'antd';
 import { clearFavorite } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
-import { showConfirmModal } from '../Utils';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
-  const beers = useSelector(state => state.beerListReducer);
-  const favorites = useSelector(state => state.favoriteListReducer.favorites);
+  const { rawData: beers } = useSelector(state => state.beerListReducer);
+  const { favorites } = useSelector(state => state.favoriteListReducer);
 
   const clearFavoritesHandler = () => {
     if (favorites.length > 0) {
-      const options = {
+      Modal.confirm({
         title: '주의',
         content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
-        onOk: () => dispatch(clearFavorite()),
-        onCancel: () => {},
-      };
-      showConfirmModal(options);
+        onOk: () => {
+          dispatch(clearFavorite());
+          message.info('삭제 되었습니다');
+        },
+      });
     }
   };
 
-  const renderData = beers.rawData.filter(entry =>
-    favorites.some(id => id === entry.id),
+  const renderData = beers?.filter(beer =>
+    favorites.some(id => id === beer.id),
   );
 
   return (

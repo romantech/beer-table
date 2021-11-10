@@ -2,38 +2,33 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
+import { Popconfirm, message, Modal } from 'antd';
 import { removeFromFavorite } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
-import { showInfoModal, showConfirmModal } from '../Utils';
 import { beerInfoEntries } from '../Constants';
 
 const FavoriteEntry = ({ data }) => {
   const dispatch = useDispatch();
+
   const removeHandler = () => {
-    const options = {
-      title: '주의',
-      content: `즐겨찾기에서 삭제하시겠습니까?`,
-      onOk: () => dispatch(removeFromFavorite(data.id)),
-      onCancel: () => {},
-    };
-    showConfirmModal(options);
+    message.info('삭제 되었습니다');
+    dispatch(removeFromFavorite(data.id));
   };
 
   const detailViewHandler = () => {
-    const options = {
+    Modal.info({
       title: '맥주 상세정보',
       content: <ModalContents data={data} />,
       width: '58vw',
-    };
-    showInfoModal(options);
+    });
   };
 
   return (
     <S.Wrapper>
-      <div>
+      <section>
         <img src={data.image_url} alt="beer_image" />
-      </div>
-      <div>
+      </section>
+      <section>
         <h1>
           {data.name} <span>{data.tagline}</span>
         </h1>
@@ -42,15 +37,21 @@ const FavoriteEntry = ({ data }) => {
             <span key={field}>{`${title} ${data[field]}`}</span>
           ))}
         </div>
-      </div>
-      <div>
+      </section>
+      <section>
         <button type="button" onClick={detailViewHandler}>
           자세히 보기
         </button>
-        <button type="button" onClick={removeHandler}>
-          삭제
-        </button>
-      </div>
+        <Popconfirm
+          placement="top"
+          title="해당 맥주를 삭제하시겠습니까?"
+          onConfirm={removeHandler}
+          okText="Yes"
+          cancelText="No"
+        >
+          <button type="button">삭제</button>
+        </Popconfirm>
+      </section>
     </S.Wrapper>
   );
 };
@@ -65,7 +66,7 @@ S.Wrapper = styled.section`
   border-bottom: 1px solid lightgray;
   gap: 3rem;
 
-  div:nth-child(1) {
+  section:nth-child(1) {
     left: -10px;
     height: 100%;
     width: 10%;
@@ -79,7 +80,7 @@ S.Wrapper = styled.section`
     }
   }
 
-  div:nth-child(2) {
+  section:nth-child(2) {
     display: flex;
     flex-direction: column;
     margin-right: auto;
@@ -96,6 +97,7 @@ S.Wrapper = styled.section`
     }
 
     div {
+      display: flex;
       flex-direction: row;
       gap: 10px;
       margin-top: 5px;
@@ -108,7 +110,7 @@ S.Wrapper = styled.section`
     }
   }
 
-  div:nth-child(3) {
+  section:nth-child(3) {
     display: flex;
     flex-direction: column;
     gap: 8px;
