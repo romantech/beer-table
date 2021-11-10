@@ -9,7 +9,7 @@ export default {
   getSingleBeer: id => {
     return axios.get(`${baseUrl}/beers/${id}`);
   },
-  getRandomBeer: () => {
+  getRandomBeers: () => {
     return axios.get(`${baseUrl}/beers/random`);
   },
 };

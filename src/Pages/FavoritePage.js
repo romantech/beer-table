@@ -23,6 +23,10 @@ const FavoritePage = () => {
     }
   };
 
+  const renderData = beers.rawData.filter(entry =>
+    favorites.some(id => id === entry.id),
+  );
+
   return (
     <S.Container>
       <S.Header>
@@ -33,9 +37,7 @@ const FavoritePage = () => {
       </S.Header>
       <S.ListWrapper isEmpty={favorites.length === 0}>
         {favorites.length > 0 ? (
-          favorites.map(id => (
-            <FavoriteEntry key={id} data={beers.rawData[id]} />
-          ))
+          renderData.map(entry => <FavoriteEntry key={entry.id} data={entry} />)
         ) : (
           <h1>空空如也 🍻</h1>
         )}

@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { beerInfoEntries } from '../../Constants';
+
 import {
   GET_BEER_LIST_REQUEST,
   getBeerListSuccess,
@@ -10,17 +10,7 @@ import APIs from '../../APIs';
 function* getBeerList() {
   try {
     const { data: rawData } = yield call(APIs.getBeers); // yield call은 결과 반환시까지 기다려줌
-    const renderData = rawData.map(raw =>
-      beerInfoEntries
-        .filter(({ isTable }) => isTable)
-        .reduce((result, { field }) => {
-          if (field in raw) {
-            result[field] = raw[field];
-          }
-          return result;
-        }, {}),
-    );
-    yield put(getBeerListSuccess(rawData, renderData)); // action dispatch
+    yield put(getBeerListSuccess(rawData)); // action dispatch
   } catch (err) {
     yield put(getBeerListFailed(err.response.status));
   }

@@ -8,7 +8,7 @@ const ModalContents = ({ data }) => {
     <S.Container>
       <img src={data.image_url} alt="beer_image" />
       <S.ContentWrapper>
-        {beerInfoEntries.slice(0, 3).map(({ field }) => (
+        {beerInfoEntries.slice(1, 4).map(({ field }) => (
           <h1 key={field}>{data[field]}</h1>
         ))}
         <hr />
@@ -21,7 +21,7 @@ const ModalContents = ({ data }) => {
           ))}
         </ul>
         <hr />
-        {beerInfoEntries.slice(3).map(({ title, field }) => (
+        {beerInfoEntries.slice(4).map(({ title, field }) => (
           <span key={field}>{`${title} : ${data[field]}`}</span>
         ))}
         <span>{`VOLUME : ${data.volume.value} ${data.volume.unit}`}</span>

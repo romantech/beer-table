@@ -50,6 +50,11 @@ export const abvRange = [
 
 export const beerInfoEntries = [
   {
+    title: 'ID',
+    field: 'id',
+    isTable: false,
+  },
+  {
     title: 'NAME',
     field: 'name',
     cellStyle: {

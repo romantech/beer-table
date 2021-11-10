@@ -13,7 +13,7 @@ const FavoriteEntry = ({ data }) => {
     const options = {
       title: '주의',
       content: `즐겨찾기에서 삭제하시겠습니까?`,
-      onOk: () => dispatch(removeFromFavorite(data.id - 1)),
+      onOk: () => dispatch(removeFromFavorite(data.id)),
       onCancel: () => {},
     };
     showConfirmModal(options);
@@ -38,7 +38,7 @@ const FavoriteEntry = ({ data }) => {
           {data.name} <span>{data.tagline}</span>
         </h1>
         <div>
-          {beerInfoEntries.slice(3, 8).map(({ title, field }) => (
+          {beerInfoEntries.slice(4, 9).map(({ title, field }) => (
             <span key={field}>{`${title} ${data[field]}`}</span>
           ))}
         </div>

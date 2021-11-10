@@ -30,20 +30,20 @@ const BeerListPage = () => {
     dispatch(setColumnsRequest(fromIdx, toIdx, columns.modifiedColumns));
   };
 
-  const rowClickHandler = (_, { tableData }) => {
+  const rowClickHandler = (_, selected) => {
     const options = {
       title: '맥주 상세정보',
-      content: <ModalContents data={beers.rawData[tableData.id]} />,
+      content: <ModalContents data={beers.rawData[selected.id]} />,
       width: '58vw',
     };
     showInfoModal(options);
   };
 
-  const actionClickHandler = (_, { tableData }) => {
-    const { id } = tableData;
-    const isAdded = favorites?.some(favoriteId => favoriteId === id);
+  const actionClickHandler = (_, selected) => {
+    console.log(selected);
+    const isAdded = favorites?.some(id => id === selected.id);
     if (!isAdded) {
-      dispatch(addToFavorite(id));
+      dispatch(addToFavorite(selected.id));
       showAutoCloseModal({ content: `즐겨찾기에 추가되었습니다.` });
     }
   };
@@ -51,7 +51,7 @@ const BeerListPage = () => {
   const tableOptions = getTableOptions({});
   const filteredData = filterDataByAbv(
     [...selectedRange],
-    beers.renderData,
+    beers.rawData,
     abvRange,
   );
 
@@ -76,7 +76,7 @@ const BeerListPage = () => {
             }),
           )}
           data={filteredData ?? []}
-          title={`총 ${filteredData.length}개 맥주`}
+          title={`총 ${filteredData?.length}개 맥주`}
           icons={tableIcons}
           isLoading={!(beers.loading === false && columns.loading === false)}
           onRowClick={rowClickHandler}
@@ -87,7 +87,7 @@ const BeerListPage = () => {
               icon: AddBox,
               tooltip: '즐겨찾기 추가',
               onClick: actionClickHandler,
-              disabled: favorites.some(id => id === rowData.tableData.id),
+              disabled: favorites.some(id => id === rowData.id),
             }),
           ]}
           localization={{ header: { actions: 'SAVE' } }}
