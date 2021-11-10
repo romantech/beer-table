@@ -12,7 +12,7 @@ export const sitemap = [
     path: '/beerlist',
   },
   {
-    name: 'FAVORITE',
+    name: 'FAVORITEs',
     path: '/favorite',
   },
 ];

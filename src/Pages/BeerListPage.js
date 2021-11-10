@@ -76,7 +76,7 @@ const BeerListPage = () => {
             }),
           )}
           data={filteredData ?? []}
-          title="BEER LIST"
+          title={`총 ${filteredData.length}개 맥주`}
           icons={tableIcons}
           isLoading={!(beers.loading === false && columns.loading === false)}
           onRowClick={rowClickHandler}
