@@ -4,18 +4,18 @@ import styled, { css } from 'styled-components/macro';
 import { Button, Tooltip } from 'antd';
 import { ControlFilled } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import ContentHeader from './ContentHeader';
+import FunctionWrapper from './FunctionWrapper';
 import { abvRange } from '../Constants';
 import { resetColumns } from '../Modules/listColumns';
 
-const AbvFilter = ({ selectedRange, setSelectedRange }) => {
+const BeerListFunction = ({ selectedRange, setSelectedRange }) => {
   const dispatch = useDispatch();
   const resetColumn = () => {
     dispatch(resetColumns());
   };
 
   return (
-    <ContentHeader>
+    <FunctionWrapper>
       <div>
         {abvRange.map(({ range, unit }, idx) => {
           const [fromAbv, toAbv] = range;
@@ -41,11 +41,11 @@ const AbvFilter = ({ selectedRange, setSelectedRange }) => {
         <Button
           ghost
           onClick={resetColumn}
-          icon={<ControlFilled style={{ fontSize: '2rem' }} />}
+          icon={<ControlFilled style={{ fontSize: '1.8rem' }} />}
           size="large"
         />
       </Tooltip>
-    </ContentHeader>
+    </FunctionWrapper>
   );
 };
 
@@ -66,4 +66,4 @@ S.Button = styled.button`
   }
 `;
 
-export default AbvFilter;
+export default BeerListFunction;

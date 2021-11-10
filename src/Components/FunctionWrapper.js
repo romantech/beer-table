@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const ContentHeader = ({ children }) => {
+const FunctionWrapper = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
@@ -26,7 +26,7 @@ const Wrapper = styled.section`
   h2,
   h3 {
     margin: 0;
-    color: #ffffffa4;
+    color: #ffffff81;
   }
 
   h3 {
@@ -46,4 +46,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default ContentHeader;
+export default FunctionWrapper;

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal, message, Empty } from 'antd';
+import { Modal, message, Empty, Button, Tooltip } from 'antd';
+import { DeleteFilled } from '@ant-design/icons';
 import { clearFavorite } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
-import ContentHeader from '../Components/ContentHeader';
+import FunctionWrapper from '../Components/FunctionWrapper';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
@@ -31,12 +32,17 @@ const FavoritePage = () => {
 
   return (
     <S.Container>
-      <ContentHeader>
+      <FunctionWrapper>
         <h2>{`총 ${favorites?.length}개 맥주가 추가되었습니다`}</h2>
-        <S.Button type="button" onClick={clearFavoritesHandler}>
-          모두 삭제
-        </S.Button>
-      </ContentHeader>
+        <Tooltip title="즐겨찾기 모두 삭제">
+          <Button
+            ghost
+            onClick={clearFavoritesHandler}
+            icon={<DeleteFilled style={{ fontSize: '1.8rem' }} />}
+            size="large"
+          />
+        </Tooltip>
+      </FunctionWrapper>
       <S.ListWrapper isEmpty={favorites.length === 0}>
         {favorites.length > 0 ? (
           renderData.map(entry => <FavoriteEntry key={entry.id} data={entry} />)
@@ -89,14 +95,6 @@ S.ListWrapper = styled.section`
 
   h1 {
     font-size: 3rem;
-  }
-`;
-
-S.Button = styled.button`
-  background: white;
-
-  :hover {
-    background: #e0e0e0;
   }
 `;
 

@@ -12,7 +12,7 @@ import { setColumnsRequest } from '../Modules/listColumns';
 import { addToFavorite } from '../Modules/favoriteList';
 import { getTableOptions, filterDataByAbv } from '../Utils';
 import { abvRange } from '../Constants';
-import AbvFilter from '../Components/AbvFilter';
+import BeerListFunction from '../Components/BeerListFunction';
 
 const BeerListPage = () => {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const BeerListPage = () => {
 
   return (
     <S.Container>
-      <AbvFilter
+      <BeerListFunction
         selectedRange={selectedRange}
         setSelectedRange={setSelectedRange}
       />
