@@ -26,7 +26,7 @@ const Routes = () => {
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route exact path="/beerlist" component={BeerListPage} />
-        <Route exact path="/favorite" component={FavoritePage} />
+        <Route exact path="/favorites" component={FavoritePage} />
       </Switch>
     </Router>
   );

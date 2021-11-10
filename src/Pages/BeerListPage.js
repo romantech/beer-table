@@ -31,6 +31,7 @@ const BeerListPage = () => {
       title: '맥주 상세정보',
       content: <ModalContents data={beers.rawData[id]} />,
       width: '58vw',
+      maskClosable: true,
     });
   };
 
@@ -102,24 +103,6 @@ S.TableWrapper = styled.section`
   width: 75vw;
   max-height: 68vh;
   overflow: auto;
-`;
-
-S.FilterArea = styled.section`
-  background: #ffffff2d;
-  height: 10vh;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  gap: 1rem;
-
-  h3 {
-    color: white;
-    margin: 0;
-    font-size: 0.99rem;
-  }
 `;
 
 export default BeerListPage;

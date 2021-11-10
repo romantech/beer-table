@@ -8,12 +8,12 @@ export const sitemap = [
     path: '/home',
   },
   {
-    name: 'BEERs',
+    name: 'BEER LIST',
     path: '/beerlist',
   },
   {
-    name: 'FAVORITEs',
-    path: '/favorite',
+    name: 'FAVORITES',
+    path: '/favorites',
   },
 ];
 
@@ -58,8 +58,11 @@ export const beerInfoEntries = [
     title: 'NAME',
     field: 'name',
     cellStyle: {
-      whiteSpace: 'nowrap',
       minWidth: '18rem',
+      maxWidth: '18rem',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
     },
     isTable: true,
   },
@@ -68,6 +71,10 @@ export const beerInfoEntries = [
     field: 'tagline',
     cellStyle: {
       minWidth: '18rem',
+      maxWidth: '18rem',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
     },
     isTable: true,
   },

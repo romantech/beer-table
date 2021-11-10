@@ -60,6 +60,8 @@ S.Container = styled.section`
   height: 55vh;
 
   img {
+    top: 1rem;
+    position: sticky;
     max-height: 90%;
     max-width: 20%;
     object-fit: cover;
@@ -91,6 +93,7 @@ S.ContentWrapper = styled.section`
     text-align: center;
     margin: 5px 0;
     color: gray;
+    text-align: left;
   }
 
   h1:nth-child(1) {
@@ -104,7 +107,6 @@ S.ContentWrapper = styled.section`
   }
 
   h1:nth-child(3) {
-    text-align: left;
     font-size: 1.1rem;
     font-style: italic;
     font-weight: normal;

@@ -2,6 +2,8 @@ import { css } from 'styled-components/macro';
 
 export const ContainerStyle = css`
   background-image: url(${({ theme }) => theme.$pattern});
+  background-repeat: no-repeat;
+  background-size: cover;
   height: calc(100vh - 64px);
   display: grid;
   place-content: center;
