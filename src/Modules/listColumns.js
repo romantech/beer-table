@@ -9,8 +9,8 @@ const tableColumns = beerInfoEntries
 const initialState = {
   loading: false,
   error: null,
-  defaultColumns: tableColumns,
-  modifiedColumns: tableColumns,
+  defaultColumns: [...tableColumns],
+  modifiedColumns: [...tableColumns],
 };
 
 export const SET_COLUMNS_REQUEST = 'listColumns/SET_COLUMNS_REQUEST';

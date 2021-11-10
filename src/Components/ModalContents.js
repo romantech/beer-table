@@ -9,7 +9,10 @@ const ModalContents = ({ data }) => {
 
   return (
     <S.Container>
-      <img src={data.image_url} alt="beer_image" />
+      <S.ImageWrapper>
+        <img src={data.image_url} alt="beer_image" />
+      </S.ImageWrapper>
+
       <S.ContentWrapper>
         {headers.map(({ field }) => (
           <h1 key={field}>{data[field]}</h1>
@@ -55,22 +58,30 @@ S.Container = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6rem;
+  gap: 3rem;
   overflow: auto;
   height: 55vh;
+  padding: 10px;
+`;
+
+S.ImageWrapper = styled.section`
+  position: sticky;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  display: flex;
 
   img {
-    top: 1rem;
-    position: sticky;
-    max-height: 90%;
-    max-width: 20%;
+    margin: auto;
+    max-height: 80%;
     object-fit: cover;
+    max-width: 80%;
   }
 `;
 
 S.ContentWrapper = styled.section`
   height: 100%;
-  width: 60%;
+  width: 65%;
   display: flex;
   flex-direction: column;
   text-align: left;
