@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearFavorite } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
-import { ContainerStyle } from '../Style/commonStyles';
+import { ContainerStyle } from '../Styles/commonStyles';
 import { showConfirmModal } from '../Utils';
 
 const FavoritePage = () => {

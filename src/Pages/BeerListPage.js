@@ -6,7 +6,7 @@ import { AddBox } from '@material-ui/icons';
 import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
 import Pagination from '../Components/PatchedPagination';
-import { ContainerStyle, ScrollStyle } from '../Style/commonStyles';
+import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/listColumns';
 import { addToFavorite } from '../Modules/favoriteList';
 import AbvFilterButton from '../Components/AbvFilterButton';
