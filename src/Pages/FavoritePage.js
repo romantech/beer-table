@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-import { Modal, message } from 'antd';
+import { Modal, message, Empty } from 'antd';
 import { clearFavorite } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
@@ -41,7 +41,10 @@ const FavoritePage = () => {
         {favorites.length > 0 ? (
           renderData.map(entry => <FavoriteEntry key={entry.id} data={entry} />)
         ) : (
-          <h1>空空如也 🍻</h1>
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="아직 즐겨찾기한 맥주가 없네요"
+          />
         )}
       </S.ListWrapper>
     </S.Container>
