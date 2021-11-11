@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,10 +15,11 @@ import NotFoundPage from './Components/NotFoundPage';
 
 const Routes = function () {
   const dispatch = useDispatch();
+  const { rawData } = useSelector(state => state.beerList);
 
   useEffect(() => {
-    dispatch(getBeerListRequest());
-  }, [dispatch]);
+    if (!rawData || rawData.length < 325) dispatch(getBeerListRequest());
+  }, [dispatch, rawData]);
 
   return (
     <Router>
