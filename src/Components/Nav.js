@@ -7,7 +7,7 @@ import { sitemap } from '../Constants';
 const { Header } = Layout;
 
 // withRouter를 이용해 라우터 호출이 아닌 컴포넌트도 history 객체에 접근하도록 설정
-const Nav = ({ history }) => {
+const Nav = function ({ history }) {
   const { pathname } = history.location;
 
   return (

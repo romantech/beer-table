@@ -22,15 +22,15 @@ export const clearFavorite = () => ({
   type: CLEAR_FAVORITE,
 });
 
-const favoriteListReducer = (state = initialState, action) => {
-  switch (action.type) {
+const favoriteListReducer = (state = initialState, { type, payload } = {}) => {
+  switch (type) {
     case ADD_FAVORITE:
       return {
-        favorites: [...state.favorites, action.payload],
+        favorites: [...state.favorites, payload],
       };
     case REMOVE_FAVORITE:
       return {
-        favorites: state.favorites.filter(id => id !== action.payload),
+        favorites: state.favorites.filter(id => id !== payload),
       };
     case CLEAR_FAVORITE:
       return {

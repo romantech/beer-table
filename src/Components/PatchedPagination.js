@@ -3,7 +3,7 @@
 import React from 'react';
 import { TablePagination } from '@material-ui/core';
 
-function PatchedPagination(props) {
+const PatchedPagination = function (props) {
   const {
     ActionsComponent,
     onChangePage,
@@ -17,6 +17,7 @@ function PatchedPagination(props) {
       // @ts-expect-error onChangePage was renamed to onPageChange
       onPageChange={onChangePage}
       onRowsPerPageChange={onChangeRowsPerPage}
+      // eslint-disable-next-line react/no-unstable-nested-components
       ActionsComponent={subprops => {
         const { onPageChange, ...actionsComponentProps } = subprops;
         return (
@@ -29,6 +30,6 @@ function PatchedPagination(props) {
       }}
     />
   );
-}
+};
 
 export default PatchedPagination;

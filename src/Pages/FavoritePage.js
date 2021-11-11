@@ -8,7 +8,7 @@ import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
 import FunctionWrapper from '../Components/FunctionWrapper';
 
-const FavoritePage = () => {
+const FavoritePage = function () {
   const dispatch = useDispatch();
   const { rawData: beers } = useSelector(state => state.beerListReducer);
   const { favorites } = useSelector(state => state.favoriteListReducer);

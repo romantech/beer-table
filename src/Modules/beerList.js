@@ -22,8 +22,8 @@ export const getBeerListFailed = payload => ({
   payload,
 });
 
-const beerListReducer = (state = initialState, action) => {
-  switch (action.type) {
+const beerListReducer = (state = initialState, { type, payload } = {}) => {
+  switch (type) {
     case GET_BEER_LIST_REQUEST:
       return {
         ...state,
@@ -34,13 +34,13 @@ const beerListReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        rawData: action.payload,
+        rawData: payload,
       };
     case GET_BEER_LIST_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: payload,
       };
     default:
       return state;

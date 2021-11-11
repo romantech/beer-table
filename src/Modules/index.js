@@ -18,7 +18,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['beerListReducer', 'listColumnReducer', 'favoriteListReducer'],
-  // whitelist: [],
+  // blacklist: [], // 블랙리스트에 있는 항목을 제외하고 모두 포함
 };
 
 const rootReducer = combineReducers({

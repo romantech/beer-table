@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const FunctionWrapper = ({ children }) => {
+const FunctionWrapper = function ({ children }) {
   return <Wrapper>{children}</Wrapper>;
 };
 

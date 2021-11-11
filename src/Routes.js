@@ -12,7 +12,7 @@ import BeerListPage from './Pages/BeerListPage';
 import FavoritePage from './Pages/FavoritePage';
 import { getBeerListRequest } from './Modules/beerList';
 
-const Routes = () => {
+const Routes = function () {
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { beerInfoEntries } from '../Constants';
 
-const ModalContents = ({ data }) => {
+const ModalContents = function ({ data }) {
   const headers = beerInfoEntries.slice(1, 4);
   const contents = beerInfoEntries.slice(4);
 

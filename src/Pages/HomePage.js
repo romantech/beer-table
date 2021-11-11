@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import beerIcon from '../Assets/beer.png';
 import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
-const HomePage = ({ history }) => {
+const HomePage = function ({ history }) {
   const { rawData, loading } = useSelector(state => state.beerListReducer);
 
   return (

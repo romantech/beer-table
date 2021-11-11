@@ -14,7 +14,7 @@ import { getTableOptions, filterDataByAbv } from '../Utils';
 import { abvRange } from '../Constants';
 import BeerListFunction from '../Components/BeerListFunction';
 
-const BeerListPage = () => {
+const BeerListPage = function () {
   const dispatch = useDispatch();
   const beers = useSelector(state => state.beerListReducer);
   const columns = useSelector(state => state.listColumnReducer);

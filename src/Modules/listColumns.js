@@ -36,8 +36,8 @@ export const setColumnsFailed = payload => ({
 
 export const resetColumns = () => ({ type: RESET_COLUMNS });
 
-const listColumnReducer = (state = initialState, action) => {
-  switch (action.type) {
+const listColumnReducer = (state = initialState, { type, payload } = {}) => {
+  switch (type) {
     case SET_COLUMNS_REQUEST:
       return {
         ...state,
@@ -49,13 +49,13 @@ const listColumnReducer = (state = initialState, action) => {
         loading: false,
         isModified: true,
         error: null,
-        modifiedColumns: action.payload,
+        modifiedColumns: payload,
       };
     case SET_COLUMNS_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: payload,
       };
     case RESET_COLUMNS:
       return {

@@ -8,7 +8,7 @@ import FunctionWrapper from './FunctionWrapper';
 import { abvRange } from '../Constants';
 import { resetColumns } from '../Modules/listColumns';
 
-const BeerListFunction = ({ selectedRange, setSelectedRange }) => {
+const BeerListFunction = function ({ selectedRange, setSelectedRange }) {
   const { isModified } = useSelector(state => state.listColumnReducer);
   const dispatch = useDispatch();
 

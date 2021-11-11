@@ -7,7 +7,7 @@ import { removeFromFavorite } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
 import { beerInfoEntries } from '../Constants';
 
-const FavoriteEntry = ({ data }) => {
+const FavoriteEntry = function ({ data }) {
   const dispatch = useDispatch();
 
   const removeHandler = () => {
