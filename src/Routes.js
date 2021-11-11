@@ -27,10 +27,9 @@ const Routes = function () {
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route exact path="/beerlist" component={BeerListPage} />
-        <Route exact path="/beerlist/:id" component={BeerListPage} />
         <Route exact path="/favorites" component={FavoritePage} />
         <Route component={NotFoundPage} />
-        {/* path를 정의 안 하면 모든 경로에 매칭됨 */}
+        {/* path에 아무것도 입력하지 않으면 모든 경로에 매칭됨 */}
       </Switch>
     </Router>
   );
