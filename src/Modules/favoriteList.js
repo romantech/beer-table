@@ -4,41 +4,39 @@ const initialState = {
   favorites: [],
 };
 
-export const ADD_FAVORITE = '/favoriteList/ADD_FAVORITE';
-export const REMOVE_FAVORITE = '/favoriteList/REMOVE_FAVORITE';
-export const CLEAR_FAVORITE = '/favoriteList/CLEAR_FAVORITE';
+export const ADD_FAVORITES = 'favoriteList/ADD_FAVORITES';
+export const REMOVE_FAVORITES = 'favoriteList/REMOVE_FAVORITES';
+export const CLEAR_FAVORITES = 'favoriteList/CLEAR_FAVORITES';
 
-export const addToFavorite = beerId => ({
-  type: ADD_FAVORITE,
+export const addToFavorites = beerId => ({
+  type: ADD_FAVORITES,
   payload: beerId,
 });
 
-export const removeFromFavorite = beerId => ({
-  type: REMOVE_FAVORITE,
+export const removeFromFavorites = beerId => ({
+  type: REMOVE_FAVORITES,
   payload: beerId,
 });
 
-export const clearFavorite = () => ({
-  type: CLEAR_FAVORITE,
+export const clearFavorites = () => ({
+  type: CLEAR_FAVORITES,
 });
 
-const favoriteListReducer = (state = initialState, { type, payload } = {}) => {
+export default function reducer(state = initialState, { type, payload } = {}) {
   switch (type) {
-    case ADD_FAVORITE:
+    case ADD_FAVORITES:
       return {
         favorites: [...state.favorites, payload],
       };
-    case REMOVE_FAVORITE:
+    case REMOVE_FAVORITES:
       return {
         favorites: state.favorites.filter(id => id !== payload),
       };
-    case CLEAR_FAVORITE:
+    case CLEAR_FAVORITES:
       return {
         favorites: [],
       };
     default:
       return state;
   }
-};
-
-export default favoriteListReducer;
+}

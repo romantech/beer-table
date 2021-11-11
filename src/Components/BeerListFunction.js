@@ -6,10 +6,10 @@ import { ControlFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import FunctionWrapper from './FunctionWrapper';
 import { abvRange } from '../Constants';
-import { resetColumns } from '../Modules/listColumns';
+import { resetColumns } from '../Modules/tableColumns';
 
 const BeerListFunction = function ({ selectedRange, setSelectedRange }) {
-  const { isModified } = useSelector(state => state.listColumnReducer);
+  const { isModified } = useSelector(state => state.tableColumns);
   const dispatch = useDispatch();
 
   const resetColumn = () => {

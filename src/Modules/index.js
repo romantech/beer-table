@@ -6,25 +6,25 @@ import { all } from 'redux-saga/effects';
 import { enableES5 } from 'immer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import beerListReducer from './beerList';
-import favoriteListReducer from './favoriteList';
-import listColumnReducer from './listColumns';
+import beerList from './beerList';
+import favoriteList from './favoriteList';
+import tableColumns from './tableColumns';
 import getBeerListSaga from './saga/beerListSaga';
-import listColumnSaga from './saga/listColumnSaga';
+import tableColumnsSaga from './saga/tableColumnsSaga';
 
 enableES5();
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['beerListReducer', 'listColumnReducer', 'favoriteListReducer'],
+  whitelist: ['beerList', 'favoriteList', 'tableColumns'],
   // blacklist: [], // 블랙리스트에 있는 항목을 제외하고 모두 포함
 };
 
 const rootReducer = combineReducers({
-  beerListReducer,
-  listColumnReducer,
-  favoriteListReducer,
+  beerList,
+  favoriteList,
+  tableColumns,
 });
 
 export default persistReducer(persistConfig, rootReducer);
@@ -33,7 +33,7 @@ export default persistReducer(persistConfig, rootReducer);
 // 1)Action Dispatch 2)Saga 미들웨어 실행(takeLatest) 3)비동기 통신(yield call)
 // 4)통신 성공/실패에 따라 상응하는 액션 Dispatch(yield put) 5)상태 업데이트
 export function* rootSaga() {
-  yield all([getBeerListSaga(), listColumnSaga()]);
+  yield all([getBeerListSaga(), tableColumnsSaga()]);
 }
 
 /**

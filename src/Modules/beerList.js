@@ -22,7 +22,7 @@ export const getBeerListFailed = payload => ({
   payload,
 });
 
-const beerListReducer = (state = initialState, { type, payload } = {}) => {
+export default function reducer(state = initialState, { type, payload } = {}) {
   switch (type) {
     case GET_BEER_LIST_REQUEST:
       return {
@@ -45,6 +45,4 @@ const beerListReducer = (state = initialState, { type, payload } = {}) => {
     default:
       return state;
   }
-};
-
-export default beerListReducer;
+}

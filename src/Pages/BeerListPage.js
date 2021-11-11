@@ -8,17 +8,17 @@ import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
 import Pagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
-import { setColumnsRequest } from '../Modules/listColumns';
-import { addToFavorite } from '../Modules/favoriteList';
+import { setColumnsRequest } from '../Modules/tableColumns';
+import { addToFavorites } from '../Modules/favoriteList';
 import { getTableOptions, filterDataByAbv } from '../Utils';
 import { abvRange } from '../Constants';
 import BeerListFunction from '../Components/BeerListFunction';
 
 const BeerListPage = function () {
   const dispatch = useDispatch();
-  const beers = useSelector(state => state.beerListReducer);
-  const columns = useSelector(state => state.listColumnReducer);
-  const { favorites } = useSelector(state => state.favoriteListReducer);
+  const beers = useSelector(state => state.beerList);
+  const columns = useSelector(state => state.tableColumns);
+  const { favorites } = useSelector(state => state.favoriteList);
 
   const [selectedRange, setSelectedRange] = useState(new Set());
 
@@ -38,7 +38,7 @@ const BeerListPage = function () {
   const actionClickHandler = (_, { name, id }) => {
     const isAdded = favorites?.some(favoriteId => favoriteId === id);
     if (!isAdded) {
-      dispatch(addToFavorite(id));
+      dispatch(addToFavorites(id));
       notification.open({
         message: `${name}`,
         description: '즐겨찾기에 추가되었습니다',

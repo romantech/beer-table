@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
 import { Popconfirm, message, Modal } from 'antd';
-import { removeFromFavorite } from '../Modules/favoriteList';
+import { removeFromFavorites } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
 import { beerInfoEntries } from '../Constants';
 import useImage from '../Hooks/useImage';
@@ -13,7 +13,7 @@ const FavoriteEntry = function ({ data }) {
   const Image = useImage(data.image_url);
 
   const removeHandler = () => {
-    dispatch(removeFromFavorite(data.id));
+    dispatch(removeFromFavorites(data.id));
     message.success('삭제 되었습니다');
   };
 

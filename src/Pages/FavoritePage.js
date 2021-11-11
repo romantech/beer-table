@@ -3,15 +3,15 @@ import styled, { css } from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal, message, Empty, Button, Tooltip } from 'antd';
 import { DeleteFilled } from '@ant-design/icons';
-import { clearFavorite } from '../Modules/favoriteList';
+import { clearFavorites } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
 import { ContainerStyle } from '../Styles/commonStyles';
 import FunctionWrapper from '../Components/FunctionWrapper';
 
 const FavoritePage = function () {
   const dispatch = useDispatch();
-  const { rawData: beers } = useSelector(state => state.beerListReducer);
-  const { favorites } = useSelector(state => state.favoriteListReducer);
+  const { rawData: beers } = useSelector(state => state.beerList);
+  const { favorites } = useSelector(state => state.favoriteList);
 
   const clearFavoritesHandler = () => {
     if (favorites?.length === 0) {
@@ -23,7 +23,7 @@ const FavoritePage = function () {
       content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
       maskClosable: true,
       onOk: () => {
-        dispatch(clearFavorite());
+        dispatch(clearFavorites());
         message.success('모든 즐겨찾기가 삭제되었습니다');
       },
     });

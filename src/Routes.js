@@ -11,6 +11,7 @@ import HomePage from './Pages/HomePage';
 import BeerListPage from './Pages/BeerListPage';
 import FavoritePage from './Pages/FavoritePage';
 import { getBeerListRequest } from './Modules/beerList';
+import NotFoundPage from './Components/NotFoundPage';
 
 const Routes = function () {
   const dispatch = useDispatch();
@@ -26,7 +27,10 @@ const Routes = function () {
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route exact path="/beerlist" component={BeerListPage} />
+        <Route exact path="/beerlist/:id" component={BeerListPage} />
         <Route exact path="/favorites" component={FavoritePage} />
+        <Route component={NotFoundPage} />
+        {/* path를 정의 안 하면 모든 경로에 매칭됨 */}
       </Switch>
     </Router>
   );
