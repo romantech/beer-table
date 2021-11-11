@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
-import { Popconfirm, message, Modal } from 'antd';
+import { Spin, Popconfirm, message, Modal } from 'antd';
 import { removeFromFavorite } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
 import { beerInfoEntries } from '../Constants';
 
 const FavoriteEntry = function ({ data }) {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const removeHandler = () => {
     dispatch(removeFromFavorite(data.id));
@@ -25,9 +26,14 @@ const FavoriteEntry = function ({ data }) {
   };
 
   return (
-    <S.Wrapper>
+    <S.Wrapper loading={loading}>
       <section>
-        <img src={data.image_url} alt="beer_image" />
+        {loading && <Spin />}
+        <img
+          src={data.image_url}
+          alt="beer_image"
+          onLoad={() => setLoading(false)}
+        />
       </section>
       <section>
         <h1>
@@ -73,11 +79,13 @@ S.Wrapper = styled.section`
     width: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     img {
       max-height: 100%;
       max-width: 100%;
       object-fit: cover;
+      display: ${({ loading }) => loading && 'none'};
     }
   }
 

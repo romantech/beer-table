@@ -1,16 +1,23 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
+import { Spin } from 'antd';
 import styled from 'styled-components/macro';
 import { beerInfoEntries } from '../Constants';
 
 const ModalContents = function ({ data }) {
   const headers = beerInfoEntries.slice(1, 4);
   const contents = beerInfoEntries.slice(4);
+  const [loading, setLoading] = useState(true);
 
   return (
     <S.Container>
-      <S.ImageWrapper>
-        <img src={data.image_url} alt="beer_image" />
+      <S.ImageWrapper loading={loading}>
+        {loading && <Spin size="large" />}
+        <img
+          src={data.image_url}
+          alt="beer_image"
+          onLoad={() => setLoading(false)}
+        />
       </S.ImageWrapper>
 
       <S.ContentWrapper>
@@ -70,12 +77,15 @@ S.ImageWrapper = styled.section`
   width: 25%;
   height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
-    margin: auto;
+    /* margin: auto; */
     max-height: 80%;
     object-fit: cover;
     max-width: 80%;
+    display: ${({ loading }) => loading && 'none'};
   }
 `;
 
@@ -109,18 +119,17 @@ S.ContentWrapper = styled.section`
 
   h1:nth-child(1) {
     color: black;
+    font-weight: bold;
   }
 
   h1:nth-child(2) {
     margin-top: -3px;
     font-size: 1.3rem;
-    font-weight: normal;
   }
 
   h1:nth-child(3) {
     font-size: 1.1rem;
     font-style: italic;
-    font-weight: normal;
   }
 
   span:after {

@@ -46,6 +46,7 @@ S.Container = styled.section`
     display: inline-block;
     padding: 30px 0;
     position: relative;
+    font-weight: bold;
   }
 
   h1 {
