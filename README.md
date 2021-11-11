@@ -13,11 +13,11 @@
 - Redux + Saga
 - Styled-Components + Babel Plugin Macros
 - Material-Table (v4)
-- Ant Design (모달 / 헤더)
+- Ant Design (모달 / 네비바)
 
 ## 주요 기능
 
-- [PUNK API](https://punkapi.com/) 활용 맥주 정보 / 가이드 제공
+- [PUNK API](https://punkapi.com/) 활용 맥주 정보 / 가이드 제공 (325개)
 - 맥주 검색
 - 테이블 상태(컬럼 순서) 자동 저장
 - 다중 선택 ABV(알콜 도수) 필터
@@ -27,14 +27,15 @@
 ## 프로젝트 목적
 
 - Redux Saga 비동기 액션 처리 실습
+- Material Table, Ant Design 활용 실습
 
 ## 스크린샷
 
 ### 홈 화면
 
-![beerTable_01](https://user-images.githubusercontent.com/8604840/141151342-be3fcf6d-9574-4923-b8e2-84d7139bdba9.png)
+![beerTable_01](https://user-images.githubusercontent.com/8604840/141325841-34c7f290-6883-4255-93db-9588111825aa.png)
 
-### 맥주 리스트
+### 맥주 리스트 (테이블)
 
 ![beerTable_02](https://user-images.githubusercontent.com/8604840/141151347-ead2904b-3385-4092-b398-b62a8523c4c0.png)
 
