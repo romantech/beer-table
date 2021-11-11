@@ -7,7 +7,7 @@ import useImage from '../Hooks/useImage';
 const ModalContents = function ({ data }) {
   const headers = beerInfoEntries.slice(1, 4);
   const contents = beerInfoEntries.slice(4);
-  const [Image] = useImage(data.image_url, 'large');
+  const Image = useImage(data.image_url, 'large');
 
   return (
     <S.Container>

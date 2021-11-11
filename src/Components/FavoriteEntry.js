@@ -10,7 +10,7 @@ import useImage from '../Hooks/useImage';
 
 const FavoriteEntry = function ({ data }) {
   const dispatch = useDispatch();
-  const [Image] = useImage(data.image_url);
+  const Image = useImage(data.image_url);
 
   const removeHandler = () => {
     dispatch(removeFromFavorite(data.id));

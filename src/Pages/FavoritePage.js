@@ -15,7 +15,7 @@ const FavoritePage = function () {
 
   const clearFavoritesHandler = () => {
     if (favorites?.length === 0) {
-      message.warn('장바구니가 이미 비어있습니다');
+      message.warn('즐겨찾기가 이미 비어있습니다');
       return;
     }
     Modal.confirm({

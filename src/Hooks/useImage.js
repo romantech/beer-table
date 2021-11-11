@@ -18,7 +18,7 @@ const useImage = function (src, spinSize = 'default') {
     );
   };
 
-  return [Image];
+  return Image;
 };
 
 const StyledImage = styled.img`
