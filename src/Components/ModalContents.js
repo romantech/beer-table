@@ -1,23 +1,18 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { Spin } from 'antd';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { beerInfoEntries } from '../Constants';
+import useImage from '../Hooks/useImage';
 
 const ModalContents = function ({ data }) {
   const headers = beerInfoEntries.slice(1, 4);
   const contents = beerInfoEntries.slice(4);
-  const [loading, setLoading] = useState(true);
+  const [Image] = useImage(data.image_url, 'large');
 
   return (
     <S.Container>
-      <S.ImageWrapper loading={loading}>
-        {loading && <Spin size="large" />}
-        <img
-          src={data.image_url}
-          alt="beer_image"
-          onLoad={() => setLoading(false)}
-        />
+      <S.ImageWrapper>
+        <Image />
       </S.ImageWrapper>
 
       <S.ContentWrapper>
@@ -81,11 +76,8 @@ S.ImageWrapper = styled.section`
   justify-content: center;
 
   img {
-    /* margin: auto; */
     max-height: 80%;
-    object-fit: cover;
     max-width: 80%;
-    display: ${({ loading }) => loading && 'none'};
   }
 `;
 
