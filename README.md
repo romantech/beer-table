@@ -1,6 +1,6 @@
 # BEER TABLE 미니 프로젝트
 
-![beerTable_02](https://user-images.githubusercontent.com/8604840/141151347-ead2904b-3385-4092-b398-b62a8523c4c0.png)
+![beerTable_02](https://user-images.githubusercontent.com/8604840/141417710-75f7c219-3719-4936-9664-1071562797de.png)
 
 > _테이블 형태로 맥주 정보를 제공하는 미니 어플리케이션입니다._
 
@@ -33,16 +33,16 @@
 
 ### 홈 화면
 
-![beerTable_01](https://user-images.githubusercontent.com/8604840/141325841-34c7f290-6883-4255-93db-9588111825aa.png)
+![beerTable_01](https://user-images.githubusercontent.com/8604840/141417707-42df60ba-b8fb-4187-aa34-e875190ee4d1.png)
 
 ### 맥주 리스트 (테이블)
 
-![beerTable_02](https://user-images.githubusercontent.com/8604840/141151347-ead2904b-3385-4092-b398-b62a8523c4c0.png)
+![beerTable_02](https://user-images.githubusercontent.com/8604840/141417710-75f7c219-3719-4936-9664-1071562797de.png)
 
 ### 즐겨찾기 리스트
 
-![beerTable_03](https://user-images.githubusercontent.com/8604840/141151350-a7f3e83f-cd9e-4bd1-899b-562a0555f825.png)
+![beerTable_03](https://user-images.githubusercontent.com/8604840/141417712-be4ca527-7a44-45ee-8295-0f49648196ff.png)
 
 ### 맥주 상세정보 모달
 
-![beerTable_04](https://user-images.githubusercontent.com/8604840/141151353-f11f8218-fbb8-4abc-b2b4-b2d9e3ca0c3b.png)
+![beerTable_04](https://user-images.githubusercontent.com/8604840/141417715-8a8fdc17-df10-4d03-8cc2-8b95af507729.png)

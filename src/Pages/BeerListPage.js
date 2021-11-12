@@ -29,7 +29,7 @@ const BeerListPage = function () {
   const rowClickHandler = (_, { id }) => {
     Modal.info({
       title: '맥주 상세정보',
-      content: <ModalContents data={beers.rawData[id]} />,
+      content: <ModalContents data={beers.rawData.find(el => el.id === id)} />,
       width: '58vw',
       maskClosable: true,
     });
