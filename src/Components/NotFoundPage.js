@@ -8,12 +8,12 @@ const NotFoundPage = function ({ history }) {
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSeconds(seconds - 1);
-      if (seconds === 1) history.push('/home');
-    }, 1000);
-
+    const timer = setInterval(() => setSeconds(prev => prev - 1), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (seconds === 0) history.push('/home');
   }, [history, seconds]);
 
   return (
