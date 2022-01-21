@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 const useImage = function (src, spinSize = 'default') {
   const [isLoading, setIsLoading] = useState(true);
-  const Image = function () {
+  return function Image() {
     return (
       <>
         {isLoading && <Spin size={spinSize} />}
@@ -17,8 +17,6 @@ const useImage = function (src, spinSize = 'default') {
       </>
     );
   };
-
-  return Image;
 };
 
 const StyledImage = styled.img`

@@ -14,7 +14,7 @@ export const filterDataByAbv = (selectedRange, data, abvRange) => {
 };
 
 export const getTableOptions = styles => {
-  const defaultOptions = {
+  return {
     headerStyle: styles?.headerStyle ?? {
       backgroundColor: '#1890FF',
       color: '#FFF',
@@ -23,5 +23,4 @@ export const getTableOptions = styles => {
     pageSize: styles?.pageSize ?? 6,
     pageSizeOptions: styles?.pageSizeOptions ?? [6, 10, 15],
   };
-  return defaultOptions;
 };

@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { AddBox } from '@material-ui/icons';
-import { notification, Modal } from 'antd';
+import { Modal, notification } from 'antd';
 import ModalContents from '../Components/ModalContents';
 import tableIcons from '../Assets/tableIcons';
 import Pagination from '../Components/PatchedPagination';
 import { ContainerStyle, ScrollStyle } from '../Styles/commonStyles';
 import { setColumnsRequest } from '../Modules/tableColumns';
 import { addToFavorites } from '../Modules/favoriteList';
-import { getTableOptions, filterDataByAbv } from '../Utils';
+import { filterDataByAbv, getTableOptions } from '../Utils';
 import { abvRange } from '../Constants';
 import BeerListFunction from '../Components/BeerListFunction';
 
 const BeerListPage = function () {
   const dispatch = useDispatch();
-  const beers = useSelector(state => state.beerList);
-  const columns = useSelector(state => state.tableColumns);
-  const { favorites } = useSelector(state => state.favoriteList);
+  const beers = useSelector(({ beerList }) => beerList);
+  const columns = useSelector(({ tableColumns }) => tableColumns);
+  const { favorites } = useSelector(({ favoriteList }) => favoriteList);
 
   const [selectedRange, setSelectedRange] = useState(new Set());
 
@@ -94,12 +94,12 @@ const BeerListPage = function () {
 
 const S = {};
 S.Container = styled.section`
-  ${ContainerStyle}
+  ${ContainerStyle};
   font-size: 1rem;
 `;
 
 S.TableWrapper = styled.section`
-  ${ScrollStyle}
+  ${ScrollStyle};
   width: 75vw;
   max-height: 68vh;
   overflow: auto;

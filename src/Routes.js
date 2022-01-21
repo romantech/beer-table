@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch,
-  Redirect,
 } from 'react-router-dom';
 import Nav from './Components/Nav';
 import HomePage from './Pages/HomePage';
@@ -15,7 +15,7 @@ import NotFoundPage from './Components/NotFoundPage';
 
 const Routes = function () {
   const dispatch = useDispatch();
-  const { rawData } = useSelector(state => state.beerList);
+  const { rawData } = useSelector(({ beerList }) => beerList);
 
   useEffect(() => {
     if (!rawData || rawData.length < 325) dispatch(getBeerListRequest());

@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
+// noinspection JSIgnoredPromiseFromCall
+
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
-import { Popconfirm, message, Modal } from 'antd';
+import { message, Modal, Popconfirm } from 'antd';
 import { removeFromFavorites } from '../Modules/favoriteList';
 import ModalContents from './ModalContents';
 import { beerInfoEntries } from '../Constants';

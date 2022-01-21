@@ -7,7 +7,7 @@ import beerIcon from '../Assets/beer.png';
 import { ContainerStyle, UnderlineStyle } from '../Styles/commonStyles';
 
 const HomePage = function ({ history }) {
-  const { rawData, loading } = useSelector(state => state.beerList);
+  const { rawData, loading } = useSelector(({ beerList }) => beerList);
 
   return (
     <S.Container>

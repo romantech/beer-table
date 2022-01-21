@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
-import { Result, Button } from 'antd';
+import { Button, Result } from 'antd';
 import { ContainerStyle } from '../Styles/commonStyles';
 
 const NotFoundPage = function ({ history }) {
@@ -37,7 +37,7 @@ const Container = styled.section`
 
   .ant-result-title, .ant-result-subtitle {
     color: white;
-    font-weight: 500px;
+    font-weight: 500;
   }
 `;
 

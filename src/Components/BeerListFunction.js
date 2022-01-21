@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+// noinspection JSIgnoredPromiseFromCall
+
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { Button, Tooltip, Popconfirm, message } from 'antd';
+import { Button, message, Popconfirm, Tooltip } from 'antd';
 import { ControlFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import FunctionWrapper from './FunctionWrapper';
@@ -9,7 +11,7 @@ import { abvRange } from '../Constants';
 import { resetColumns } from '../Modules/tableColumns';
 
 const BeerListFunction = function ({ selectedRange, setSelectedRange }) {
-  const { isModified } = useSelector(state => state.tableColumns);
+  const { isModified } = useSelector(({ tableColumns }) => tableColumns);
   const dispatch = useDispatch();
 
   const resetColumn = () => {

@@ -103,7 +103,6 @@ S.ContentWrapper = styled.section`
   }
 
   h1 {
-    text-align: center;
     margin: 5px 0;
     color: gray;
     text-align: left;

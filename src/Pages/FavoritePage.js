@@ -1,7 +1,9 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { useSelector, useDispatch } from 'react-redux';
-import { Modal, message, Empty, Button, Tooltip } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Empty, message, Modal, Tooltip } from 'antd';
 import { DeleteFilled } from '@ant-design/icons';
 import { clearFavorites } from '../Modules/favoriteList';
 import FavoriteEntry from '../Components/FavoriteEntry';
@@ -10,8 +12,8 @@ import FunctionWrapper from '../Components/FunctionWrapper';
 
 const FavoritePage = function () {
   const dispatch = useDispatch();
-  const { rawData: beers } = useSelector(state => state.beerList);
-  const { favorites } = useSelector(state => state.favoriteList);
+  const { rawData: beers } = useSelector(({ beerList }) => beerList);
+  const { favorites } = useSelector(({ favoriteList }) => favoriteList);
 
   const clearFavoritesHandler = () => {
     if (favorites?.length === 0) {
