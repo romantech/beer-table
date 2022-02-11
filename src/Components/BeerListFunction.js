@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// noinspection JSIgnoredPromiseFromCall
 
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
@@ -14,12 +13,12 @@ const BeerListFunction = function ({ selectedRange, setSelectedRange }) {
   const { isModified } = useSelector(({ tableColumns }) => tableColumns);
   const dispatch = useDispatch();
 
-  const resetColumn = () => {
+  const resetColumn = async () => {
     if (isModified) {
       dispatch(resetColumns());
-      message.success('컬럼 순서를 초기화했습니다');
+      await message.success('컬럼 순서를 초기화했습니다');
     } else {
-      message.warn('컬럼 순서가 이미 초기화 상태입니다');
+      await message.warn('컬럼 순서가 이미 초기화 상태입니다');
     }
   };
 

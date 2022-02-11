@@ -1,5 +1,3 @@
-// noinspection JSIgnoredPromiseFromCall
-
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,18 +13,18 @@ const FavoritePage = function () {
   const { rawData: beers } = useSelector(({ beerList }) => beerList);
   const { favorites } = useSelector(({ favoriteList }) => favoriteList);
 
-  const clearFavoritesHandler = () => {
+  const clearFavoritesHandler = async () => {
     if (favorites?.length === 0) {
-      message.warn('즐겨찾기가 이미 비어있습니다');
+      await message.warn('즐겨찾기가 이미 비어있습니다');
       return;
     }
     Modal.confirm({
       title: '주의',
       content: `즐겨찾기에 있는 모든 맥주(${favorites.length})를 삭제하시겠습니까?`,
       maskClosable: true,
-      onOk: () => {
+      onOk: async () => {
         dispatch(clearFavorites());
-        message.success('모든 즐겨찾기가 삭제되었습니다');
+        await message.success('모든 즐겨찾기가 삭제되었습니다');
       },
     });
   };

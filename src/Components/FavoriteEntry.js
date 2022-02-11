@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// noinspection JSIgnoredPromiseFromCall
 
 import React from 'react';
 import styled from 'styled-components/macro';
@@ -14,9 +13,9 @@ const FavoriteEntry = function ({ data }) {
   const dispatch = useDispatch();
   const Image = useImage(data.image_url);
 
-  const removeHandler = () => {
+  const removeHandler = async () => {
     dispatch(removeFromFavorites(data.id));
-    message.success('삭제 되었습니다');
+    await message.success('삭제 되었습니다');
   };
 
   const detailViewHandler = () => {
