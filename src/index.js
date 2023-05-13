@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components/macro';
+import { createRoot } from 'react-dom/client';
 import theme from './Styles/theme';
 import GlobalStyle from './Styles/globalStyle';
 import Routes from './Routes';
 import rootReducer, { rootSaga } from './Modules';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+const root = createRoot(rootElement);
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer =
@@ -24,7 +28,7 @@ const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(
+root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <ThemeProvider theme={theme}>
@@ -33,5 +37,4 @@ ReactDOM.render(
       </ThemeProvider>
     </PersistGate>
   </Provider>,
-  document.getElementById('root'),
 );
