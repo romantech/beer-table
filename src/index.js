@@ -7,7 +7,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components/macro';
 import { createRoot } from 'react-dom/client';
-import { Analytics } from '@vercel/analytics/react';
+import { inject } from '@vercel/analytics';
 import theme from './Styles/theme';
 import GlobalStyle from './Styles/globalStyle';
 import Routes from './Routes';
@@ -17,6 +17,8 @@ import 'antd/dist/antd.min.css';
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
 const root = createRoot(rootElement);
+
+inject();
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer =
@@ -38,7 +40,6 @@ root.render(
           <Routes />
         </ThemeProvider>
       </PersistGate>
-      <Analytics />
     </Provider>
   </React.StrictMode>,
 );
