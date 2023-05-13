@@ -7,6 +7,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components/macro';
 import { createRoot } from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import theme from './Styles/theme';
 import GlobalStyle from './Styles/globalStyle';
 import Routes from './Routes';
@@ -29,12 +30,15 @@ const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 
 root.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Routes />
-      </ThemeProvider>
-    </PersistGate>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Routes />
+        </ThemeProvider>
+      </PersistGate>
+      <Analytics />
+    </Provider>
+  </React.StrictMode>,
 );
