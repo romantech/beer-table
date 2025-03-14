@@ -10,6 +10,12 @@ const { Header } = Layout;
 const Nav = function ({ history }) {
   const { pathname } = history.location;
 
+  const items = sitemap.map(({ name, path }) => ({
+    key: path,
+    label: name,
+    onClick: () => history.push(path),
+  }));
+
   return (
     <Header>
       <Menu
@@ -17,18 +23,8 @@ const Nav = function ({ history }) {
         mode="horizontal"
         selectedKeys={pathname}
         style={{ fontSize: '1rem' }}
-      >
-        {sitemap.map(({ name, path }) => (
-          <Menu.Item
-            key={path}
-            onClick={() => {
-              history.push(path);
-            }}
-          >
-            {name}
-          </Menu.Item>
-        ))}
-      </Menu>
+        items={items}
+      />
     </Header>
   );
 };
