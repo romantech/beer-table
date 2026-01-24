@@ -4,7 +4,7 @@
 
 > _테이블 형태로 맥주 정보를 제공하는 미니 어플리케이션입니다._
 
-- **Live Demo** : [https://beer-table.vercel.app](https://beer-table.vercel.app/)
+- ~~**Live Demo** : [https://beer-table.vercel.app](https://beer-table.vercel.app/)~~
 - 작업기간 6일
 
 ## 사용 스택 / 라이브러리
